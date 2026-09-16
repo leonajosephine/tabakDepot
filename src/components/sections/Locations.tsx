@@ -1,94 +1,208 @@
+"use client";
+
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { useRef } from "react";
+
 const locations = [
-    {
-      number: "01",
-      name: "Depot Innenstadt",
-      address: "Marktstraße 12\n32423 Minden",
-      hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
-    },
-    {
-      number: "02",
-      name: "Depot Nord",
-      address: "Wesertor 24\n32425 Minden",
-      hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
-    },
-    {
-      number: "03",
-      name: "Depot Süd",
-      address: "Königstraße 41\n32427 Minden",
-      hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
-    },
-  ];
-  
-  export default function Locations() {
-    return (
-      <section
-        id="standorte"
-        className="bg-[var(--cream)] py-24 text-[var(--ink)] md:py-36"
-      >
-        <div className="container-main">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-5">
-              <p className="eyebrow mb-6 text-[var(--muted-dark)]">
-                Vor Ort
-              </p>
-  
-              <h2
-                className="font-display font-medium leading-[0.9] tracking-[-0.045em]"
+  {
+    number: "01",
+    name: "Depot Innenstadt",
+    address: "Marktstraße 12\n32423 Minden",
+    hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+  },
+  {
+    number: "02",
+    name: "Depot Nord",
+    address: "Wesertor 24\n32425 Minden",
+    hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+  },
+  {
+    number: "03",
+    name: "Depot Süd",
+    address: "Königstraße 41\n32427 Minden",
+    hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+  },
+];
+
+export default function Locations() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 85%", "end 25%"],
+  });
+
+  const headingX = useTransform(
+    scrollYProgress,
+    [0, 0.35, 1],
+    reduceMotion ? [0, 0, 0] : [-50, 0, 20]
+  );
+
+  const locationsY = useTransform(
+    scrollYProgress,
+    [0.15, 0.45],
+    reduceMotion ? [0, 0] : [45, 0]
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      id="standorte"
+      className="overflow-hidden bg-[var(--cream)] py-24 text-[var(--ink)] md:py-36"
+    >
+      <div className="container-main">
+        {/* INTRO */}
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="eyebrow mb-6 text-[var(--muted-dark)]">
+              Vor Ort
+            </p>
+
+            <motion.h2
+              style={{ x: headingX }}
+              className="font-display font-medium leading-[0.9] tracking-[-0.045em]"
+            >
+              <span
+                className="block"
                 style={{
                   fontSize: "clamp(4rem, 7vw, 7rem)",
                 }}
               >
                 Dreimal
                 <br />
+
                 <span className="italic text-[var(--muted-dark)]">
                   in Minden.
                 </span>
-              </h2>
-            </div>
-  
-            <div className="self-end lg:col-span-4 lg:col-start-9">
-              <p className="max-w-sm text-sm leading-6 text-[var(--muted-dark)]">
-                Persönliche Beratung, unser vollständiges Sortiment und Zeit
-                für Ihre Fragen finden Sie direkt in unseren drei Depots.
-              </p>
-            </div>
+              </span>
+            </motion.h2>
           </div>
-  
-          <div className="mt-20 grid border-y border-[var(--line-dark)] lg:grid-cols-3">
-            {locations.map((location, index) => (
-              <article
-                key={location.number}
-                className={`py-10 lg:p-10 ${
-                  index !== locations.length - 1
-                    ? "border-b border-[var(--line-dark)] lg:border-b-0 lg:border-r"
-                    : ""
-                }`}
-              >
-                <span className="eyebrow text-[var(--muted-dark)]">
-                  Standort {location.number}
-                </span>
-  
-                <h3 className="mt-8 font-display text-3xl font-medium">
-                  {location.name}
-                </h3>
-  
-                <p className="mt-5 whitespace-pre-line text-sm leading-6 text-[var(--muted-dark)]">
-                  {location.address}
-                </p>
-  
-                <div className="my-7 h-px bg-[var(--line-dark)]" />
-  
-                <p className="whitespace-pre-line text-xs leading-6 text-[var(--muted-dark)]">
-                  {location.hours}
-                </p>
-  
-                <button className="mt-8 text-[9px] uppercase tracking-[0.2em] underline decoration-black/30 underline-offset-[6px]">
-                  Route anzeigen
-                </button>
-              </article>
-            ))}
+
+          <div className="self-end lg:col-span-4 lg:col-start-9">
+            <p className="max-w-sm text-sm leading-6 text-[var(--muted-dark)]">
+              Persönliche Beratung, unser vollständiges Sortiment und Zeit
+              für Ihre Fragen finden Sie direkt in unseren drei Depots.
+            </p>
           </div>
         </div>
-      </section>
-    );
-  }
+
+        {/* LOCATIONS */}
+        <motion.div
+          style={{ y: locationsY }}
+          className="mt-20 grid border-y border-[var(--line-dark)] lg:grid-cols-3"
+        >
+          {locations.map((location, index) => (
+            <motion.article
+              key={location.number}
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
+              className={`group relative overflow-hidden py-10 lg:p-10 ${
+                index !== locations.length - 1
+                  ? "border-b border-[var(--line-dark)] lg:border-b-0 lg:border-r"
+                  : ""
+              }`}
+            >
+              {/* LARGE BACKGROUND NUMBER */}
+              <motion.span
+                variants={{
+                  rest: {
+                    opacity: 0,
+                    x: 25,
+                  },
+                  hover: {
+                    opacity: 0.045,
+                    x: 0,
+                  },
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="pointer-events-none absolute -bottom-8 right-[-0.04em] font-display text-[11rem] font-semibold leading-none"
+              >
+                {location.number}
+              </motion.span>
+
+              {/* LOCATION LABEL */}
+              <span className="eyebrow relative z-10 text-[var(--muted-dark)]">
+                Standort {location.number}
+              </span>
+
+              {/* NAME */}
+              <motion.h3
+                variants={{
+                  rest: {
+                    x: 0,
+                  },
+                  hover: {
+                    x: reduceMotion ? 0 : 8,
+                  },
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="relative z-10 mt-8 font-display text-3xl font-medium"
+              >
+                {location.name}
+              </motion.h3>
+
+              {/* ADDRESS */}
+              <p className="relative z-10 mt-5 whitespace-pre-line text-sm leading-6 text-[var(--muted-dark)]">
+                {location.address}
+              </p>
+
+              <motion.div
+                variants={{
+                  rest: {
+                    scaleX: 1,
+                  },
+                  hover: {
+                    scaleX: reduceMotion ? 1 : 0.72,
+                  },
+                }}
+                transition={{
+                  duration: 0.45,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="relative z-10 my-7 h-px origin-left bg-[var(--line-dark)]"
+              />
+
+              {/* HOURS */}
+              <p className="relative z-10 whitespace-pre-line text-xs leading-6 text-[var(--muted-dark)]">
+                {location.hours}
+              </p>
+
+              {/* ROUTE */}
+              <button className="group/route relative z-10 mt-8 inline-flex items-center gap-4 text-[9px] uppercase tracking-[0.2em]">
+                <span className="underline decoration-black/30 underline-offset-[6px]">
+                  Route anzeigen
+                </span>
+
+                <span className="transition-transform duration-300 group-hover/route:translate-x-1">
+                  ↗
+                </span>
+              </button>
+            </motion.article>
+          ))}
+        </motion.div>
+
+        {/* BOTTOM DETAIL */}
+        <div className="mt-8 flex items-center gap-5">
+          <span className="h-px flex-1 bg-[var(--line-dark)]" />
+
+          <span className="whitespace-nowrap text-[8px] uppercase tracking-[0.28em] text-[var(--muted-dark)]">
+            Persönlich vor Ort
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
