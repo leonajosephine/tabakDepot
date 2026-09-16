@@ -21,8 +21,7 @@ const whiskies = [
     note: "Rauch · Torf · Meeresbrise",
     description:
       "Intensiv, rauchig und unverwechselbar. Ein Islay-Klassiker für alle, die Charakter im Glas suchen.",
-    image:
-      "https://images.unsplash.com/photo-1627136499605-4c9013aee46c?auto=format&fit=crop&w=700&q=90",
+    image: "/images/whisky/whisky1.png",
   },
   {
     id: 2,
@@ -32,8 +31,7 @@ const whiskies = [
     note: "Vanille · Karamell · Eiche",
     description:
       "Weich und warm mit klassischer Bourbon-Süße – ein unkomplizierter Begleiter zu kräftigen Zigarren.",
-    image:
-      "https://images.unsplash.com/photo-1730565612822-290bc747b551?auto=format&fit=crop&w=700&q=90",
+    image: "/images/whisky/whisky2.png",
   },
   {
     id: 3,
@@ -43,8 +41,7 @@ const whiskies = [
     note: "Frucht · Honig · Eiche",
     description:
       "Elegant und ausgewogen mit reifen Früchten, Honig und einer feinen Holznote.",
-    image:
-      "https://images.unsplash.com/photo-1652284917571-e6475a979ea5?auto=format&fit=crop&w=700&q=90",
+    image: "/images/whisky/whisky3.png",
   },
   {
     id: 4,
@@ -54,8 +51,7 @@ const whiskies = [
     note: "Vanille · Kakao · Kokos",
     description:
       "Weich, komplex und aromatisch – ein Rum, der hervorragend mit einer milden bis mittelkräftigen Zigarre harmoniert.",
-    image:
-      "https://images.unsplash.com/photo-1657114024705-29f393c87fd0?auto=format&fit=crop&w=700&q=90",
+    image: "/images/whisky/whisky6.png",
   },
   {
     id: 5,
@@ -65,8 +61,7 @@ const whiskies = [
     note: "Schokolade · Orange · Gewürz",
     description:
       "Samtig und vollmundig mit dunkler Süße und würzigen Akzenten.",
-    image:
-      "https://images.unsplash.com/photo-1610365233936-b05d226aece2?auto=format&fit=crop&w=700&q=90",
+    image: "/images/whisky/whisky5.png",
   },
 ];
 
@@ -125,7 +120,11 @@ export default function WhiskyShowcase({
 
   const productVariants = {
     enter: (direction: number) => ({
-      x: reduceMotion ? 0 : direction > 0 ? 150 : -150,
+      x: reduceMotion
+        ? 0
+        : direction > 0
+          ? 150
+          : -150,
       opacity: 0,
       scale: reduceMotion ? 1 : 0.92,
     }),
@@ -137,7 +136,11 @@ export default function WhiskyShowcase({
     },
 
     exit: (direction: number) => ({
-      x: reduceMotion ? 0 : direction > 0 ? -150 : 150,
+      x: reduceMotion
+        ? 0
+        : direction > 0
+          ? -150
+          : 150,
       opacity: 0,
       scale: reduceMotion ? 1 : 0.92,
     }),
@@ -148,7 +151,7 @@ export default function WhiskyShowcase({
       id="whisky"
       className="relative overflow-hidden bg-[var(--cream)] text-[var(--ink)]"
     >
-      {/* INTRO */}
+      {/* HEADER */}
       <div className="container-main border-b border-[var(--line-dark)] py-16 md:py-20">
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -159,6 +162,7 @@ export default function WhiskyShowcase({
             <h2 className="font-display text-5xl font-medium leading-none tracking-[-0.04em] md:text-7xl">
               Der passende
               <br />
+
               <span className="italic text-[var(--muted-dark)]">
                 Begleiter.
               </span>
@@ -166,57 +170,58 @@ export default function WhiskyShowcase({
           </div>
 
           <p className="max-w-lg self-end text-sm leading-6 text-[var(--muted-dark)] lg:col-span-4 lg:col-start-9">
-            Eine kleine Auswahl aus unserem Sortiment. Persönliche Empfehlungen
-            und weitere Spirituosen finden Sie direkt in unseren Depots.
+            Eine kleine Auswahl aus unserem Sortiment.
+            Persönliche Empfehlungen und weitere
+            Spirituosen finden Sie direkt in unseren
+            Depots.
           </p>
         </div>
       </div>
 
       {/* SHOWCASE */}
       <div className="relative min-h-[760px]">
-        {/* GHOST TYPOGRAPHY — ABSOLUTE BACKGROUND LAYER */}
+        {/* BACKGROUND TYPOGRAPHY */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center overflow-hidden">
-        <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
             <motion.p
-            key={whisky.category}
-            initial={{
+              key={whisky.category}
+              initial={{
                 opacity: 0,
                 x: direction > 0 ? 70 : -70,
-            }}
-            animate={{
+              }}
+              animate={{
                 opacity: 1,
                 x: 0,
-            }}
-            exit={{
+              }}
+              exit={{
                 opacity: 0,
                 x: direction > 0 ? -70 : 70,
-            }}
-            transition={{
+              }}
+              transition={{
                 duration: 0.55,
                 ease: [0.22, 1, 0.36, 1],
-            }}
-            className="font-display whitespace-nowrap font-medium leading-none text-black/[0.055]"
-            style={{
-                fontSize: "clamp(9rem, 21vw, 22rem)",
+              }}
+              className="font-display whitespace-nowrap font-medium leading-none text-black/[0.055]"
+              style={{
+                fontSize:
+                  "clamp(9rem, 21vw, 22rem)",
                 marginLeft: "-3vw",
-            }}
+              }}
             >
-            {whisky.category} — {whisky.category}
+              {whisky.category} — {whisky.category}
             </motion.p>
-        </AnimatePresence>
+          </AnimatePresence>
         </div>
 
-        {/* CENTER LINE */}
+        {/* VERTICAL LINE */}
         <div className="absolute bottom-0 left-[37%] top-0 z-[1] hidden w-px bg-[var(--line-dark)] lg:block" />
 
-        {/* ALL ACTUAL CONTENT LIVES ABOVE THE WATERMARK */}
         <div className="container-main relative z-10 grid min-h-[760px] items-center py-16 lg:grid-cols-12">
-          {/* INFO */}
+          {/* INFORMATION */}
           <div className="lg:col-span-4">
-            <AnimatePresence mode="wait" custom={direction}>
+            <AnimatePresence mode="wait">
               <motion.div
                 key={whisky.id}
-                custom={direction}
                 initial={{
                   opacity: 0,
                   y: reduceMotion ? 0 : 20,
@@ -237,7 +242,10 @@ export default function WhiskyShowcase({
               >
                 <p className="eyebrow mb-8 text-[var(--muted-dark)]">
                   Selected bottle ·{" "}
-                  {String(active + 1).padStart(2, "0")}
+                  {String(active + 1).padStart(
+                    2,
+                    "0"
+                  )}
                 </p>
 
                 <h3 className="font-display text-4xl font-medium tracking-[-0.03em]">
@@ -268,24 +276,32 @@ export default function WhiskyShowcase({
             </AnimatePresence>
           </div>
 
-          {/* PRODUCT CAROUSEL */}
+          {/* BOTTLE CAROUSEL */}
           <div className="relative h-[540px] overflow-visible lg:col-span-6">
-            {/* PREVIOUS PRODUCT */}
+            {/* PREVIOUS BOTTLE */}
             <motion.button
               onClick={previous}
               aria-label="Vorherige Flasche"
-              whileHover={reduceMotion ? undefined : { x: 8, opacity: 0.42 }}
+              whileHover={
+                reduceMotion
+                  ? undefined
+                  : {
+                      x: 8,
+                      opacity: 0.42,
+                    }
+              }
               className="absolute left-[-15%] top-1/2 z-0 hidden -translate-y-1/2 cursor-pointer lg:block"
             >
               <img
                 src={previousWhisky.image}
                 alt=""
-                className="h-[310px] w-[175px] object-cover opacity-25 grayscale-[25%]"
+                draggable={false}
+                className="h-[340px] w-[210px] select-none object-contain opacity-25 grayscale-[25%] drop-shadow-[0_20px_18px_rgba(0,0,0,0.12)]"
               />
             </motion.button>
 
-            {/* ACTIVE PRODUCT */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* ACTIVE BOTTLE */}
+            <div className="absolute inset-0 z-10 flex items-center justify-center">
               <AnimatePresence
                 mode="wait"
                 custom={direction}
@@ -310,45 +326,45 @@ export default function WhiskyShowcase({
                   onDragEnd={handleDragEnd}
                   whileDrag={{
                     cursor: "grabbing",
-                    scale: reduceMotion ? 1 : 0.98,
+                    scale: reduceMotion
+                      ? 1
+                      : 0.98,
                   }}
                   className="z-10 cursor-grab touch-pan-y"
                 >
-                  {/*
-                    Sobald deine transparenten PNGs da sind:
-
-                    - image austauschen
-                    - object-cover zu object-contain ändern
-                    - w-[...] kann entfernt/vergrößert werden
-                    - shadow durch drop-shadow ersetzen
-
-                    Dann wirkt die Flasche wirklich frei schwebend.
-                  */}
                   <img
                     src={whisky.image}
                     alt={whisky.name}
                     draggable={false}
-                    className="h-[430px] w-[240px] select-none object-cover shadow-2xl md:h-[500px] md:w-[280px]"
+                    className="h-[430px] w-[280px] select-none object-contain drop-shadow-[0_28px_24px_rgba(0,0,0,0.18)] md:h-[500px] md:w-[330px]"
                   />
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* NEXT PRODUCT */}
+            {/* NEXT BOTTLE */}
             <motion.button
               onClick={next}
               aria-label="Nächste Flasche"
-              whileHover={reduceMotion ? undefined : { x: -8, opacity: 0.42 }}
+              whileHover={
+                reduceMotion
+                  ? undefined
+                  : {
+                      x: -8,
+                      opacity: 0.42,
+                    }
+              }
               className="absolute right-[-15%] top-1/2 z-0 hidden -translate-y-1/2 cursor-pointer lg:block"
             >
               <img
                 src={nextWhisky.image}
                 alt=""
-                className="h-[310px] w-[175px] object-cover opacity-25 grayscale-[25%]"
+                draggable={false}
+                className="h-[340px] w-[210px] select-none object-contain opacity-25 grayscale-[25%] drop-shadow-[0_20px_18px_rgba(0,0,0,0.12)]"
               />
             </motion.button>
 
-            {/* MOBILE SWIPE LABEL */}
+            {/* MOBILE SWIPE HINT */}
             <p className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] uppercase tracking-[0.25em] text-[var(--muted-dark)]/60 lg:hidden">
               Swipe to explore
             </p>
@@ -363,6 +379,7 @@ export default function WhiskyShowcase({
               <span className="transition-transform duration-300 group-hover:-translate-x-1">
                 ←
               </span>
+
               Prev
             </button>
 
@@ -386,6 +403,7 @@ export default function WhiskyShowcase({
               className="group flex items-center gap-4 text-[9px] uppercase tracking-[0.25em] text-[var(--muted-dark)] transition-colors hover:text-black"
             >
               Next
+
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
