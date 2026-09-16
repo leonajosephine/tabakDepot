@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import TabakDepotMark from "@/components/ui/TabakDepotMark";
 
 const links = [
   { label: "Erlebnis", href: "#erlebnis" },
@@ -19,74 +20,82 @@ export default function Navigation({ onInquiry }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
 
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
+      className="fixed inset-x-0 top-0 z-50 text-[var(--cream)] transition-all duration-500"
       style={{
-        background: scrolled ? "rgba(16, 14, 12, 0.9)" : "transparent",
+        background: scrolled
+          ? "rgba(16,14,12,.88)"
+          : "linear-gradient(to bottom, rgba(12,10,8,.5), transparent)",
         backdropFilter: scrolled ? "blur(18px)" : "none",
         borderBottom: scrolled
           ? "1px solid rgba(242,238,230,.1)"
           : "1px solid transparent",
       }}
     >
-      <div className="container-main flex h-[76px] items-center justify-between">
-        <a href="#" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30">
-            <span className="font-display text-[19px] font-semibold text-[var(--cream)]">
-              TD
-            </span>
-          </div>
+      <div className="container-main grid h-[84px] grid-cols-[1fr_auto_1fr] items-center">
+        {/* Brand */}
+        <a href="#" className="flex items-center gap-3 justify-self-start">
+          <TabakDepotMark
+            size={48}
+            className="text-[var(--cream)]"
+          />
 
-          <div className="hidden flex-col sm:flex">
-            <span className="font-display text-[17px] font-semibold leading-none tracking-[0.08em] text-[var(--cream)]">
+          <div className="hidden sm:block">
+            <p className="font-display text-[16px] font-semibold leading-none tracking-[0.07em]">
               TABAK DEPOT
-            </span>
+            </p>
 
-            <span className="mt-1 text-[8px] uppercase tracking-[0.34em] text-white/40">
+            <p className="mt-1.5 text-[7px] uppercase tracking-[0.34em] text-white/40">
               Uphoff · Minden
-            </span>
+            </p>
           </div>
         </a>
 
+        {/* Center navigation */}
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-[10px] uppercase tracking-[0.18em] text-white/50 transition-colors hover:text-white"
+              className="text-[9px] uppercase tracking-[0.21em] text-white/50 transition-colors hover:text-white"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <button
-          onClick={onInquiry}
-          className="hidden border border-white/25 px-5 py-2.5 text-[9px] uppercase tracking-[0.22em] text-white/70 transition-all hover:border-white/60 hover:text-white lg:block"
-        >
-          Event anfragen
-        </button>
+        {/* Right */}
+        <div className="flex items-center justify-self-end">
+          <button
+            onClick={onInquiry}
+            className="hidden items-center gap-3 text-[9px] uppercase tracking-[0.21em] text-white/60 transition-colors hover:text-white lg:flex"
+          >
+            Event anfragen
 
-        <button
-          onClick={() => setMenuOpen((value) => !value)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] lg:hidden"
-          aria-label="Menü öffnen"
-        >
-          <span className="h-px w-5 bg-white" />
-          <span className="h-px w-5 bg-white" />
-        </button>
+            <span className="text-sm">↗</span>
+          </button>
+
+          <button
+            onClick={() => setMenuOpen((value) => !value)}
+            className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] lg:hidden"
+            aria-label="Menü öffnen"
+          >
+            <span className="h-px w-5 bg-white" />
+            <span className="h-px w-5 bg-white" />
+          </button>
+        </div>
       </div>
 
       {menuOpen && (
