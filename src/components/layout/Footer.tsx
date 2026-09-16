@@ -1,5 +1,7 @@
 import TabakDepotMark from "@/components/ui/TabakDepotMark";
 
+import Image from "next/image";
+
 type FooterProps = {
   onInquiry?: () => void;
 };
@@ -15,10 +17,14 @@ export default function Footer({
           {/* BRAND */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-5">
-              <TabakDepotMark
-                size={58}
-                className="text-white/70"
-              />
+                <Image
+                src="/images/logo1.png"
+                alt="Tabak Depot Uphoff"
+                width={58}
+                height={58}
+                priority
+                className="h-[52px] w-[52px] object-contain"
+                />
 
               <div>
                 <p className="font-display text-xl font-medium tracking-[0.08em]">

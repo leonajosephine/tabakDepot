@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import TabakDepotMark from "@/components/ui/TabakDepotMark";
+import Image from "next/image";
 
 const links = [
   { label: "Erlebnis", href: "#erlebnis" },
@@ -47,10 +48,14 @@ export default function Navigation({ onInquiry }: NavigationProps) {
       <div className="container-main grid h-[84px] grid-cols-[1fr_auto_1fr] items-center">
         {/* Brand */}
         <a href="#" className="flex items-center gap-3 justify-self-start">
-          <TabakDepotMark
-            size={48}
-            className="text-[var(--cream)]"
-          />
+        <Image
+            src="/images/logo1.png"
+            alt="Tabak Depot Uphoff"
+            width={52}
+            height={52}
+            priority
+            className="h-[52px] w-[52px] object-contain"
+            />
 
           <div className="hidden sm:block">
             <p className="font-display text-[16px] font-semibold leading-none tracking-[0.07em]">

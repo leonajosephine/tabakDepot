@@ -11,7 +11,7 @@ import {
   useState,
 } from "react";
 
-import TabakDepotMark from "@/components/ui/TabakDepotMark";
+import Image from "next/image";
 
 type InquiryModalProps = {
   open: boolean;
@@ -544,12 +544,15 @@ export default function InquiryModal({
                   className="relative flex min-h-[650px] items-center overflow-hidden px-7 py-20 md:px-14 lg:px-20"
                 >
                   {/* LOGO WATERMARK */}
-                  <div className="pointer-events-none absolute -bottom-12 -right-12 text-black/[0.045] md:-bottom-16 md:-right-10">
-                    <TabakDepotMark
-                      size={320}
-                      className="h-[260px] w-[260px] md:h-[380px] md:w-[380px]"
+                    <div className="pointer-events-none absolute -bottom-16 -right-12 opacity-[0.045] md:-bottom-20 md:-right-14">
+                    <Image
+                        src="/images/logoReversed.png"
+                        alt=""
+                        width={420}
+                        height={420}
+                        className="h-[300px] w-[300px] object-contain md:h-[400px] md:w-[400px]"
                     />
-                  </div>
+                    </div>
 
                   <div className="relative z-10 max-w-3xl">
                     <div className="mb-10 flex items-center gap-5">
