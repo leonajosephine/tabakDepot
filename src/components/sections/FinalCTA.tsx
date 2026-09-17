@@ -73,11 +73,11 @@ export default function FinalCTA({
               fontSize: "clamp(4rem, 8vw, 8rem)",
             }}
           >
-            Was dürfen wir
+            Erzählen Sie uns 
             <br />
-            für Sie{" "}
+            von Ihrem{" "}
             <span className="italic text-white/55">
-              vorbereiten?
+              Event.
             </span>
           </h2>
 
