@@ -78,10 +78,6 @@ export default function Packages({
     offset: ["start 85%", "end 20%"],
   });
 
-  /* -------------------------------- */
-  /* INTRO                            */
-  /* -------------------------------- */
-
   const headingX = useTransform(
     scrollYProgress,
     [0, 0.25, 1],
@@ -99,15 +95,6 @@ export default function Packages({
     [0, 0.18],
     reduceMotion ? [1, 1] : [0.35, 1]
   );
-
-  /* -------------------------------- */
-  /* PACKAGE COMPOSITION              */
-  /* -------------------------------- */
-
-  /*
-   * The three columns start at slightly different
-   * heights and settle onto the same baseline.
-   */
 
   const cardOneY = useTransform(
     scrollYProgress,
@@ -127,11 +114,6 @@ export default function Packages({
     reduceMotion ? [0, 0, 0] : [88, 0, -12]
   );
 
-  /*
-   * Images have their own movement inside
-   * the fixed editorial frames.
-   */
-
   const imageOneY = useTransform(
     scrollYProgress,
     [0.08, 0.8],
@@ -149,11 +131,6 @@ export default function Packages({
     [0.08, 0.8],
     reduceMotion ? ["0%", "0%"] : ["-7%", "6%"]
   );
-
-  /*
-   * Lines grow into the composition rather
-   * than simply appearing with the cards.
-   */
 
   const lineScale = useTransform(
     scrollYProgress,
@@ -186,21 +163,32 @@ export default function Packages({
     <section
       ref={sectionRef}
       id="pakete"
-      className="overflow-hidden bg-[var(--cream)] py-24 text-[var(--ink)] md:py-36"
+      className="overflow-hidden bg-[var(--cream)] py-20 text-[var(--ink)] md:py-28 lg:py-36"
     >
       <div className="container-main">
         {/* INTRO */}
-        <div className="grid gap-12 lg:grid-cols-12">
+        <div className="grid gap-8 md:gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow mb-7 text-[var(--muted-dark)]">
+            <p className="eyebrow mb-6 text-[var(--muted-dark)] md:mb-7">
               Ihr Erlebnis
             </p>
 
+            {/* MOBILE HEADING */}
+            <h2 className="font-display text-[clamp(3.4rem,15vw,5rem)] font-medium leading-[0.9] tracking-[-0.04em] lg:hidden">
+              Drei Wege
+              <br />
+              zu Ihrem
+              <br />
+
+              <span className="italic text-[var(--muted-dark)]">
+                Genussmoment.
+              </span>
+            </h2>
+
+            {/* DESKTOP HEADING */}
             <motion.h2
-              style={{
-                x: headingX,
-              }}
-              className="font-display font-medium leading-[0.94] tracking-[-0.04em]"
+              style={{ x: headingX }}
+              className="hidden font-display font-medium leading-[0.94] tracking-[-0.04em] lg:block"
             >
               <span
                 className="block"
@@ -228,7 +216,7 @@ export default function Packages({
             }}
             className="flex items-end lg:col-span-5 lg:col-start-8"
           >
-            <p className="max-w-xl text-[15px] leading-7 text-[var(--muted-dark)]">
+            <p className="max-w-xl text-sm leading-6 text-[var(--muted-dark)] md:text-[15px] md:leading-7">
               Von der individuell zusammengestellten
               Zigarrenbox bis zum persönlich begleiteten
               Abend: Sie entscheiden, wie viel wir für
@@ -237,12 +225,120 @@ export default function Packages({
           </motion.div>
         </div>
 
-        {/* -------------------------------- */}
-        {/* PACKAGE COMPOSITION              */}
-        {/* -------------------------------- */}
+        {/* MOBILE CAROUSEL HEADER */}
+        <div className="mt-12 flex items-center justify-between border-t border-[var(--line-dark)] pt-5 lg:hidden">
+          <span className="text-[8px] uppercase tracking-[0.24em] text-[var(--muted-dark)]">
+            Swipe to explore
+          </span>
 
+          <span className="font-display text-sm italic text-[var(--muted-dark)]">
+            01 — 03
+          </span>
+        </div>
+      </div>
+
+      {/* MOBILE HORIZONTAL PACKAGES */}
+      <div className="mt-5 lg:hidden">
+        <div
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-5 pl-6 pr-[12vw] sm:pl-12"
+          style={{
+            scrollbarWidth: "none",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          {packages.map((item) => (
+            <article
+              key={item.id}
+              className="relative w-[84vw] max-w-[420px] shrink-0 snap-start border border-[var(--line-dark)] bg-[var(--cream)] p-5"
+            >
+              {/* NUMBER + PRICE */}
+              <div className="flex items-center justify-between">
+                <span className="eyebrow text-[var(--muted-dark)]">
+                  Option {item.number}
+                </span>
+
+                <span className="font-display text-base italic text-[var(--muted-dark)]">
+                  {item.price}
+                </span>
+              </div>
+
+              {/* IMAGE */}
+              <div className="relative my-6 aspect-[4/3] overflow-hidden bg-[#ddd5ca]">
+                <img
+                  src={item.image}
+                  alt=""
+                  className="h-full w-full object-cover grayscale-[10%]"
+                />
+
+                <div className="pointer-events-none absolute inset-0 bg-black/[0.04]" />
+
+                {item.premium && (
+                  <div className="absolute bottom-0 left-0 bg-[var(--ink)] px-3 py-2.5 text-[7px] uppercase tracking-[0.23em] text-[var(--cream)]">
+                    Private Service
+                  </div>
+                )}
+              </div>
+
+              {/* TYPE */}
+              <p className="mb-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]">
+                {item.type}
+              </p>
+
+              {/* TITLE */}
+              <h3 className="font-display text-[2.25rem] font-medium leading-[0.95] tracking-[-0.03em]">
+                {item.title}
+              </h3>
+
+              {/* DESCRIPTION */}
+              <p className="mt-4 text-[13px] leading-[1.65] text-[var(--muted-dark)]">
+                {item.description}
+              </p>
+
+              {/* FEATURES */}
+              <div className="mt-6 border-t border-[var(--line-dark)]">
+                {item.features.map((feature) => (
+                  <div
+                    key={feature}
+                    className="flex items-center gap-3 border-b border-[var(--line-dark)] py-2.5"
+                  >
+                    <span className="h-px w-3 shrink-0 bg-black/25" />
+
+                    <span className="text-[11px] text-[var(--muted-dark)]">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* ACTION */}
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+                <button
+                  onClick={() =>
+                    onInquiry?.(item.id)
+                  }
+                  className="text-[8px] font-medium uppercase tracking-[0.2em] underline decoration-black/30 underline-offset-[6px]"
+                >
+                  Paket anfragen
+                </button>
+
+                {item.premium && (
+                  <a
+                    href="#private-service"
+                    className="inline-flex items-center gap-2 text-[7px] uppercase tracking-[0.2em] text-[var(--muted-dark)]"
+                  >
+                    Mehr erfahren
+                    <span>↓</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      {/* DESKTOP PACKAGE COMPOSITION */}
+      <div className="container-main hidden lg:block">
         <div className="relative mt-20">
-          {/* ANIMATED TOP LINE */}
           <motion.span
             style={{
               scaleX: lineScale,
@@ -258,8 +354,7 @@ export default function Packages({
                   y: cardMotion[index].y,
                 }}
                 className={`group relative py-10 lg:px-8 lg:py-12 xl:px-10 ${
-                  index <
-                  packages.length - 1
+                  index < packages.length - 1
                     ? "border-b border-[var(--line-dark)] lg:border-b-0 lg:border-r"
                     : ""
                 }`}
@@ -312,7 +407,6 @@ export default function Packages({
                     }}
                   />
 
-                  {/* SUBTLE IMAGE OVERLAY */}
                   <div className="pointer-events-none absolute inset-0 bg-black/[0.04] transition-opacity duration-700 group-hover:opacity-0" />
 
                   {item.premium && (
@@ -339,20 +433,18 @@ export default function Packages({
 
                 {/* FEATURES */}
                 <div className="mt-8 border-t border-[var(--line-dark)]">
-                  {item.features.map(
-                    (feature) => (
-                      <div
-                        key={feature}
-                        className="flex items-center gap-4 border-b border-[var(--line-dark)] py-3"
-                      >
-                        <span className="h-px w-4 bg-black/25" />
+                  {item.features.map((feature) => (
+                    <div
+                      key={feature}
+                      className="flex items-center gap-4 border-b border-[var(--line-dark)] py-3"
+                    >
+                      <span className="h-px w-4 bg-black/25" />
 
-                        <span className="text-xs text-[var(--muted-dark)]">
-                          {feature}
-                        </span>
-                      </div>
-                    )
-                  )}
+                      <span className="text-xs text-[var(--muted-dark)]">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* ACTION */}
@@ -383,7 +475,6 @@ export default function Packages({
             ))}
           </div>
 
-          {/* ANIMATED BOTTOM LINE */}
           <motion.span
             style={{
               scaleX: lineScale,

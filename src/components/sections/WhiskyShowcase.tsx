@@ -178,8 +178,187 @@ export default function WhiskyShowcase({
         </div>
       </div>
 
-      {/* SHOWCASE */}
-      <div className="relative min-h-[760px]">
+      {/* ================================= */}
+      {/* MOBILE SHOWCASE                   */}
+      {/* ================================= */}
+
+      <div className="relative lg:hidden">
+        {/* PRODUCT STAGE */}
+        <div className="relative h-[520px] overflow-hidden">
+          {/* GHOST TYPOGRAPHY */}
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={whisky.category}
+                initial={{
+                  opacity: 0,
+                  x: direction > 0 ? 40 : -40,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  x: direction > 0 ? -40 : 40,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="font-display whitespace-nowrap text-[8.5rem] font-medium leading-none text-black/[0.04]"
+              >
+                {whisky.category}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+
+          {/* NUMBER */}
+          <div className="container-main absolute left-0 right-0 top-7 z-10 flex items-center justify-between">
+            <span className="eyebrow text-[var(--muted-dark)]">
+              Selected bottle
+            </span>
+
+            <span className="font-display text-lg italic text-[var(--muted-dark)]">
+              {String(active + 1).padStart(2, "0")} /{" "}
+              {String(whiskies.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          {/* ACTIVE BOTTLE */}
+          <div className="absolute inset-0 z-10 flex items-center justify-center pt-8">
+            <AnimatePresence
+              mode="wait"
+              custom={direction}
+            >
+              <motion.div
+                key={whisky.id}
+                custom={direction}
+                variants={productVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  duration: 0.55,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                drag="x"
+                dragConstraints={{
+                  left: 0,
+                  right: 0,
+                }}
+                dragElastic={0.18}
+                onDragEnd={handleDragEnd}
+                whileDrag={{
+                  cursor: "grabbing",
+                  scale: reduceMotion ? 1 : 0.98,
+                }}
+                className="cursor-grab touch-pan-y"
+              >
+                <img
+                  src={whisky.image}
+                  alt={whisky.name}
+                  draggable={false}
+                  className="h-[390px] w-[250px] select-none object-contain drop-shadow-[0_28px_24px_rgba(0,0,0,0.18)] sm:h-[430px] sm:w-[280px]"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <p className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap text-[7px] uppercase tracking-[0.25em] text-[var(--muted-dark)]/55">
+            Swipe to explore
+          </p>
+        </div>
+
+        {/* MOBILE CONTROLS */}
+        <div className="container-main">
+          <div className="flex items-center justify-between border-y border-[var(--line-dark)] py-5">
+            <button
+              onClick={previous}
+              className="flex items-center gap-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
+            >
+              <span>←</span>
+              Prev
+            </button>
+
+            <div className="flex items-center gap-2">
+              {whiskies.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => goTo(index)}
+                  aria-label={`Whisky ${index + 1}`}
+                  className={`h-[2px] transition-all duration-300 ${
+                    index === active
+                      ? "w-7 bg-black"
+                      : "w-2 bg-black/20"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              className="flex items-center gap-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
+            >
+              Next
+              <span>→</span>
+            </button>
+          </div>
+
+          {/* MOBILE INFORMATION */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={whisky.id}
+              initial={{
+                opacity: 0,
+                y: reduceMotion ? 0 : 15,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: reduceMotion ? 0 : -10,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="py-9"
+            >
+              <p className="text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]">
+                {whisky.origin}
+              </p>
+
+              <h3 className="mt-3 font-display text-[2.7rem] font-medium leading-none tracking-[-0.035em]">
+                {whisky.name}
+              </h3>
+
+              <p className="mt-5 font-display text-xl italic text-[var(--muted-dark)]">
+                {whisky.note}
+              </p>
+
+              <p className="mt-5 max-w-md text-[13px] leading-[1.7] text-[var(--muted-dark)]">
+                {whisky.description}
+              </p>
+
+              <button
+                onClick={onInquiry}
+                className="mt-7 text-[8px] uppercase tracking-[0.21em] underline decoration-black/30 underline-offset-[6px]"
+              >
+                Pairing anfragen
+              </button>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* ================================= */}
+      {/* DESKTOP SHOWCASE                  */}
+      {/* ================================= */}
+
+      <div className="relative hidden min-h-[760px] lg:block">
         {/* BACKGROUND TYPOGRAPHY */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center overflow-hidden">
           <AnimatePresence mode="wait">
@@ -295,7 +474,6 @@ export default function WhiskyShowcase({
 
           {/* ACTIVE + NEXT BOTTLE */}
           <div className="relative h-[540px] overflow-visible lg:col-span-4">
-            {/* ACTIVE BOTTLE */}
             <div className="absolute inset-0 z-10 flex items-center justify-start">
               <AnimatePresence
                 mode="wait"
@@ -356,11 +534,6 @@ export default function WhiskyShowcase({
                 className="h-[340px] w-[210px] select-none object-contain opacity-25 grayscale-[25%] drop-shadow-[0_20px_18px_rgba(0,0,0,0.12)]"
               />
             </motion.button>
-
-            {/* MOBILE SWIPE HINT */}
-            <p className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] uppercase tracking-[0.25em] text-[var(--muted-dark)]/60 lg:hidden">
-              Swipe to explore
-            </p>
           </div>
 
           {/* CONTROLS */}

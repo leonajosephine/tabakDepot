@@ -15,7 +15,7 @@ const locations = [
     address: "Marktstraße 12\n32423 Minden",
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
     image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1686205705363-a266f03b2d04?q=80&w=1860&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     number: "02",
@@ -31,7 +31,7 @@ const locations = [
     address: "Königstraße 41\n32427 Minden",
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
     image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1781242934546-a7d82b595eeb?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
