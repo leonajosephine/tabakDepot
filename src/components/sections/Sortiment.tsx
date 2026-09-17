@@ -166,10 +166,20 @@ export default function Sortiment() {
               ))}
             </div>
 
-            <p className="mt-7 text-xs leading-5 text-white/30">
+            <p className="mt-7 text-sm leading-5 text-white/30">
               Unser vollständiges Sortiment entdecken Sie direkt vor Ort.
               Wir beraten Sie gerne persönlich.
             </p>
+            <a 
+            href="#standorte"
+              className="group mt-4 inline-flex items-center gap-4 text-[8px] uppercase tracking-[0.24em] text-white/55 transition-colors hover:text-white"
+            >
+                Standorte entdecken
+    
+                <span className="transition-transform duration-300 group-hover:translate-y-1">
+                    ↓
+                </span>
+            </a>
           </div>
         </div>
       </div>

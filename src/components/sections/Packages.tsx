@@ -67,7 +67,9 @@ const packages = [
   },
 ];
 
-export default function Packages({ onInquiry }: PackagesProps) {
+export default function Packages({
+  onInquiry,
+}: PackagesProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -76,17 +78,109 @@ export default function Packages({ onInquiry }: PackagesProps) {
     offset: ["start 85%", "end 20%"],
   });
 
+  /* -------------------------------- */
+  /* INTRO                            */
+  /* -------------------------------- */
+
   const headingX = useTransform(
     scrollYProgress,
     [0, 0.25, 1],
     reduceMotion ? [0, 0, 0] : [-55, 0, 22]
   );
 
-  const cardsY = useTransform(
+  const introTextY = useTransform(
     scrollYProgress,
-    [0.12, 0.4],
-    reduceMotion ? [0, 0] : [55, 0]
+    [0, 0.28],
+    reduceMotion ? [0, 0] : [24, 0]
   );
+
+  const introTextOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.18],
+    reduceMotion ? [1, 1] : [0.35, 1]
+  );
+
+  /* -------------------------------- */
+  /* PACKAGE COMPOSITION              */
+  /* -------------------------------- */
+
+  /*
+   * The three columns start at slightly different
+   * heights and settle onto the same baseline.
+   */
+
+  const cardOneY = useTransform(
+    scrollYProgress,
+    [0.08, 0.42, 1],
+    reduceMotion ? [0, 0, 0] : [72, 0, -8]
+  );
+
+  const cardTwoY = useTransform(
+    scrollYProgress,
+    [0.08, 0.42, 1],
+    reduceMotion ? [0, 0, 0] : [28, 0, -3]
+  );
+
+  const cardThreeY = useTransform(
+    scrollYProgress,
+    [0.08, 0.42, 1],
+    reduceMotion ? [0, 0, 0] : [88, 0, -12]
+  );
+
+  /*
+   * Images have their own movement inside
+   * the fixed editorial frames.
+   */
+
+  const imageOneY = useTransform(
+    scrollYProgress,
+    [0.08, 0.8],
+    reduceMotion ? ["0%", "0%"] : ["-6%", "6%"]
+  );
+
+  const imageTwoY = useTransform(
+    scrollYProgress,
+    [0.08, 0.8],
+    reduceMotion ? ["0%", "0%"] : ["-4%", "5%"]
+  );
+
+  const imageThreeY = useTransform(
+    scrollYProgress,
+    [0.08, 0.8],
+    reduceMotion ? ["0%", "0%"] : ["-7%", "6%"]
+  );
+
+  /*
+   * Lines grow into the composition rather
+   * than simply appearing with the cards.
+   */
+
+  const lineScale = useTransform(
+    scrollYProgress,
+    [0.08, 0.38],
+    reduceMotion ? [1, 1] : [0, 1]
+  );
+
+  const footOpacity = useTransform(
+    scrollYProgress,
+    [0.3, 0.5],
+    reduceMotion ? [1, 1] : [0, 1]
+  );
+
+  const cardMotion = [
+    {
+      y: cardOneY,
+      imageY: imageOneY,
+    },
+    {
+      y: cardTwoY,
+      imageY: imageTwoY,
+    },
+    {
+      y: cardThreeY,
+      imageY: imageThreeY,
+    },
+  ];
 
   return (
     <section
@@ -103,19 +197,23 @@ export default function Packages({ onInquiry }: PackagesProps) {
             </p>
 
             <motion.h2
-              style={{ x: headingX }}
+              style={{
+                x: headingX,
+              }}
               className="font-display font-medium leading-[0.94] tracking-[-0.04em]"
             >
               <span
                 className="block"
                 style={{
-                  fontSize: "clamp(3.3rem, 5.5vw, 5.8rem)",
+                  fontSize:
+                    "clamp(3.3rem, 5.5vw, 5.8rem)",
                 }}
               >
                 Drei Wege
                 <br />
                 zu Ihrem
                 <br />
+
                 <span className="italic text-[var(--muted-dark)]">
                   Genussmoment.
                 </span>
@@ -123,120 +221,190 @@ export default function Packages({ onInquiry }: PackagesProps) {
             </motion.h2>
           </div>
 
-          <div className="flex items-end lg:col-span-5 lg:col-start-8">
+          <motion.div
+            style={{
+              y: introTextY,
+              opacity: introTextOpacity,
+            }}
+            className="flex items-end lg:col-span-5 lg:col-start-8"
+          >
             <p className="max-w-xl text-[15px] leading-7 text-[var(--muted-dark)]">
-              Von der individuell zusammengestellten Zigarrenbox bis zum
-              persönlich begleiteten Abend: Sie entscheiden, wie viel wir für
+              Von der individuell zusammengestellten
+              Zigarrenbox bis zum persönlich begleiteten
+              Abend: Sie entscheiden, wie viel wir für
               Ihr Event übernehmen.
             </p>
-          </div>
+          </motion.div>
         </div>
 
-        {/* THREE OPTIONS */}
+        {/* -------------------------------- */}
+        {/* PACKAGE COMPOSITION              */}
+        {/* -------------------------------- */}
+
+        <div className="relative mt-20">
+          {/* ANIMATED TOP LINE */}
+          <motion.span
+            style={{
+              scaleX: lineScale,
+            }}
+            className="absolute left-0 right-0 top-0 h-px origin-left bg-[var(--line-dark)]"
+          />
+
+          <div className="grid lg:grid-cols-3">
+            {packages.map((item, index) => (
+              <motion.article
+                key={item.id}
+                style={{
+                  y: cardMotion[index].y,
+                }}
+                className={`group relative py-10 lg:px-8 lg:py-12 xl:px-10 ${
+                  index <
+                  packages.length - 1
+                    ? "border-b border-[var(--line-dark)] lg:border-b-0 lg:border-r"
+                    : ""
+                }`}
+              >
+                {/* NUMBER + PRICE */}
+                <div className="flex items-center justify-between">
+                  <motion.span
+                    whileHover={
+                      reduceMotion
+                        ? undefined
+                        : {
+                            x: 5,
+                          }
+                    }
+                    transition={{
+                      duration: 0.35,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="eyebrow text-[var(--muted-dark)]"
+                  >
+                    Option {item.number}
+                  </motion.span>
+
+                  <span className="font-display text-lg italic text-[var(--muted-dark)]">
+                    {item.price}
+                  </span>
+                </div>
+
+                {/* IMAGE */}
+                <div className="relative my-9 aspect-[4/3] overflow-hidden bg-[#ddd5ca]">
+                  <motion.img
+                    src={item.image}
+                    alt=""
+                    style={{
+                      y: cardMotion[index].imageY,
+                    }}
+                    className="absolute -inset-y-[8%] left-0 h-[116%] w-full object-cover grayscale-[15%] transition-[filter] duration-700 group-hover:grayscale-0"
+                    whileHover={
+                      reduceMotion
+                        ? undefined
+                        : {
+                            scale: 1.045,
+                          }
+                    }
+                    transition={{
+                      scale: {
+                        duration: 0.8,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                    }}
+                  />
+
+                  {/* SUBTLE IMAGE OVERLAY */}
+                  <div className="pointer-events-none absolute inset-0 bg-black/[0.04] transition-opacity duration-700 group-hover:opacity-0" />
+
+                  {item.premium && (
+                    <div className="absolute bottom-0 left-0 bg-[var(--ink)] px-4 py-3 text-[8px] uppercase tracking-[0.25em] text-[var(--cream)]">
+                      Private Service
+                    </div>
+                  )}
+                </div>
+
+                {/* TYPE */}
+                <p className="mb-3 text-[9px] uppercase tracking-[0.24em] text-[var(--muted-dark)]">
+                  {item.type}
+                </p>
+
+                {/* TITLE */}
+                <h3 className="font-display text-[clamp(2rem,2.6vw,2.8rem)] font-medium leading-[0.95] tracking-[-0.03em]">
+                  {item.title}
+                </h3>
+
+                {/* DESCRIPTION */}
+                <p className="mt-5 min-h-[72px] max-w-md text-sm leading-6 text-[var(--muted-dark)]">
+                  {item.description}
+                </p>
+
+                {/* FEATURES */}
+                <div className="mt-8 border-t border-[var(--line-dark)]">
+                  {item.features.map(
+                    (feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-center gap-4 border-b border-[var(--line-dark)] py-3"
+                      >
+                        <span className="h-px w-4 bg-black/25" />
+
+                        <span className="text-xs text-[var(--muted-dark)]">
+                          {feature}
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
+
+                {/* ACTION */}
+                <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+                  <button
+                    onClick={() =>
+                      onInquiry?.(item.id)
+                    }
+                    className="text-[9px] font-medium uppercase tracking-[0.22em] underline decoration-black/30 underline-offset-[7px] transition-opacity hover:opacity-50"
+                  >
+                    Paket anfragen
+                  </button>
+
+                  {item.premium && (
+                    <a
+                      href="#private-service"
+                      className="group/link inline-flex items-center gap-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
+                    >
+                      Mehr erfahren
+
+                      <span className="transition-transform duration-300 group-hover/link:translate-y-1">
+                        ↓
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          {/* ANIMATED BOTTOM LINE */}
+          <motion.span
+            style={{
+              scaleX: lineScale,
+            }}
+            className="absolute bottom-0 left-0 right-0 h-px origin-right bg-[var(--line-dark)]"
+          />
+        </div>
+
+        {/* EDITORIAL FOOT */}
         <motion.div
-          style={{ y: cardsY }}
-          className="mt-20 grid border-y border-[var(--line-dark)] lg:grid-cols-3"
+          style={{
+            opacity: footOpacity,
+          }}
+          className="mt-8 flex items-center gap-5"
         >
-          {packages.map((item, index) => (
-            <article
-              key={item.id}
-              className={`group relative py-10 lg:px-8 lg:py-12 xl:px-10 ${
-                index < packages.length - 1
-                  ? "border-b border-[var(--line-dark)] lg:border-b-0 lg:border-r"
-                  : ""
-              }`}
-            >
-              {/* NUMBER + PRICE */}
-              <div className="flex items-center justify-between">
-                <span className="eyebrow text-[var(--muted-dark)]">
-                  Option {item.number}
-                </span>
-
-                <span className="font-display text-lg italic text-[var(--muted-dark)]">
-                  {item.price}
-                </span>
-              </div>
-
-              {/* IMAGE */}
-              <div className="relative my-9 aspect-[4/3] overflow-hidden bg-[#ddd5ca]">
-                <img
-                  src={item.image}
-                  alt=""
-                  className="h-full w-full object-cover grayscale-[15%] transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-                />
-
-                {item.premium && (
-                  <div className="absolute bottom-0 left-0 bg-[var(--ink)] px-4 py-3 text-[8px] uppercase tracking-[0.25em] text-[var(--cream)]">
-                    Private Service
-                  </div>
-                )}
-              </div>
-
-              {/* TYPE */}
-              <p className="mb-3 text-[9px] uppercase tracking-[0.24em] text-[var(--muted-dark)]">
-                {item.type}
-              </p>
-
-              {/* TITLE */}
-              <h3 className="font-display text-[clamp(2rem,2.6vw,2.8rem)] font-medium leading-[0.95] tracking-[-0.03em]">
-                {item.title}
-              </h3>
-
-              {/* DESCRIPTION */}
-              <p className="mt-5 min-h-[72px] max-w-md text-sm leading-6 text-[var(--muted-dark)]">
-                {item.description}
-              </p>
-
-              {/* FEATURES */}
-              <div className="mt-8 border-t border-[var(--line-dark)]">
-                {item.features.map((feature) => (
-                  <div
-                    key={feature}
-                    className="flex items-center gap-4 border-b border-[var(--line-dark)] py-3"
-                  >
-                    <span className="h-px w-4 bg-black/25" />
-
-                    <span className="text-xs text-[var(--muted-dark)]">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* ACTION */}
-              <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
-                <button
-                  onClick={() => onInquiry?.(item.id)}
-                  className="text-[9px] font-medium uppercase tracking-[0.22em] underline decoration-black/30 underline-offset-[7px] transition-opacity hover:opacity-50"
-                >
-                  Paket anfragen
-                </button>
-
-                {item.premium && (
-                  <a
-                    href="#private-service"
-                    className="group/link inline-flex items-center gap-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
-                  >
-                    Mehr erfahren
-
-                    <span className="transition-transform duration-300 group-hover/link:translate-y-1">
-                      ↓
-                    </span>
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
-        </motion.div>
-
-        {/* SMALL EDITORIAL FOOT */}
-        <div className="mt-8 flex items-center gap-5">
           <span className="h-px flex-1 bg-[var(--line-dark)]" />
 
           <span className="text-[8px] uppercase tracking-[0.28em] text-[var(--muted-dark)]">
             Auswahl · Vorbereitung · Begleitung
           </span>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

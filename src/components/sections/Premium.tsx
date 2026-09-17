@@ -23,28 +23,101 @@ export default function Premium({
     offset: ["start end", "end start"],
   });
 
+  /*
+   * BACKGROUND
+   *
+   * Stronger parallax than before.
+   * The oversized image gives us enough room
+   * to move it without exposing its edges.
+   */
   const imageY = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? ["0%", "0%"] : ["-4%", "4%"]
+    reduceMotion
+      ? ["0%", "0%"]
+      : ["-10%", "10%"]
   );
 
+  /*
+   * The image slowly pulls back while scrolling.
+   * This makes the movement feel more like a
+   * camera move than a simple translated image.
+   */
   const imageScale = useTransform(
     scrollYProgress,
-    [0, 1],
-    reduceMotion ? [1, 1] : [1.08, 1.02]
+    [0, 0.5, 1],
+    reduceMotion
+      ? [1.08, 1.08, 1.08]
+      : [1.14, 1.08, 1.03]
   );
 
+  /*
+   * Very subtle brightness change.
+   * The image becomes a little clearer around
+   * the centre of the section.
+   */
+  const imageOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.28, 0.75, 1],
+    reduceMotion
+      ? [1, 1, 1, 1]
+      : [0.82, 1, 1, 0.88]
+  );
+
+  /*
+   * CONTENT
+   *
+   * Moves independently from the background,
+   * creating the second depth layer.
+   */
   const contentY = useTransform(
     scrollYProgress,
-    [0.15, 0.5, 0.9],
-    reduceMotion ? [0, 0, 0] : [55, 0, -25]
+    [0, 0.45, 1],
+    reduceMotion
+      ? [0, 0, 0]
+      : [95, 0, -70]
   );
 
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0.08, 0.3, 0.82, 0.98],
+    reduceMotion
+      ? [1, 1, 1, 1]
+      : [0.45, 1, 1, 0.65]
+  );
+
+  /*
+   * LARGE 03
+   *
+   * This is allowed to move more strongly because
+   * it is decorative and creates the foreground layer.
+   */
   const numberY = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? [0, 0] : [90, -70]
+    reduceMotion
+      ? [0, 0]
+      : [150, -120]
+  );
+
+  const numberX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion
+      ? [0, 0]
+      : [35, -20]
+  );
+
+  /*
+   * Small movement for the horizontal details at
+   * the bottom. Different speed = more depth.
+   */
+  const detailsY = useTransform(
+    scrollYProgress,
+    [0.2, 0.6, 1],
+    reduceMotion
+      ? [0, 0, 0]
+      : [35, 0, -18]
   );
 
   return (
@@ -60,13 +133,15 @@ export default function Premium({
         style={{
           y: imageY,
           scale: imageScale,
+          opacity: imageOpacity,
         }}
-        className="absolute -inset-y-[6%] left-0 h-[112%] w-full object-cover"
+        className="absolute -inset-y-[12%] left-0 h-[124%] w-full object-cover will-change-transform"
       />
 
-      {/* IMAGE TREATMENT */}
-      <div className="absolute inset-0 bg-black/40" />
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/35" />
 
+      {/* LEFT CONTENT GRADIENT */}
       <div
         className="absolute inset-0"
         style={{
@@ -75,6 +150,7 @@ export default function Premium({
         }}
       />
 
+      {/* BOTTOM GRADIENT */}
       <div
         className="absolute inset-0"
         style={{
@@ -83,13 +159,15 @@ export default function Premium({
         }}
       />
 
-      {/* LARGE BACKGROUND NUMBER */}
+      {/* LARGE MOVING 03 */}
       <motion.p
         style={{
           y: numberY,
-          fontSize: "clamp(10rem, 24vw, 24rem)",
+          x: numberX,
+          fontSize:
+            "clamp(10rem, 24vw, 24rem)",
         }}
-        className="pointer-events-none absolute -bottom-[4vw] right-[-1vw] select-none font-display font-semibold leading-none text-white/[0.055]"
+        className="pointer-events-none absolute -bottom-[4vw] right-[-1vw] select-none font-display font-semibold leading-none text-white/[0.055] will-change-transform"
       >
         03
       </motion.p>
@@ -97,10 +175,13 @@ export default function Premium({
       {/* CONTENT */}
       <div className="container-main relative z-10 flex min-h-[900px] items-center py-24">
         <motion.div
-          style={{ y: contentY }}
-          className="w-full max-w-[1000px]"
+          style={{
+            y: contentY,
+            opacity: contentOpacity,
+          }}
+          className="w-full max-w-[1000px] will-change-transform"
         >
-          {/* META */}
+          {/* LABEL */}
           <div className="mb-10 flex items-center gap-5">
             <span className="eyebrow text-white/45">
               Option 03
@@ -117,15 +198,19 @@ export default function Premium({
           <h2
             className="font-display font-medium leading-[0.84] tracking-[-0.05em]"
             style={{
-              fontSize: "clamp(4.5rem, 9vw, 9rem)",
+              fontSize:
+                "clamp(4.5rem, 9vw, 9rem)",
             }}
           >
             Ein Abend,
             <br />
-            <span className="italic">der bleibt.</span>
+
+            <span className="italic">
+              der bleibt.
+            </span>
           </h2>
 
-          {/* SERVICE INFORMATION */}
+          {/* INFORMATION */}
           <div className="mt-14 grid max-w-4xl gap-10 border-t border-white/20 pt-8 md:grid-cols-2">
             <div>
               <p className="eyebrow mb-5 text-white/35">
@@ -141,18 +226,23 @@ export default function Premium({
 
             <div>
               <p className="text-sm leading-6 text-white/55">
-                Unser Sommelier begleitet Ihr Event persönlich, berät Ihre
-                Gäste bei der Auswahl und führt auf Wunsch durch die Welt der
-                Zigarren – vom passenden Format bis zum richtigen Genuss.
+                Unser Sommelier begleitet Ihr Event
+                persönlich, berät Ihre Gäste bei der
+                Auswahl und führt auf Wunsch durch die
+                Welt der Zigarren – vom passenden
+                Format bis zum richtigen Genuss.
               </p>
 
               <p className="mt-4 text-sm leading-6 text-white/55">
-                Auf Wunsch ergänzen wir das Erlebnis um ein individuell
-                abgestimmtes Whisky-Pairing.
+                Auf Wunsch ergänzen wir das Erlebnis
+                um ein individuell abgestimmtes
+                Whisky-Pairing.
               </p>
 
               <button
-                onClick={() => onInquiry?.("premium")}
+                onClick={() =>
+                  onInquiry?.("premium")
+                }
                 className="mt-9 bg-[var(--cream)] px-6 py-3.5 text-[9px] font-semibold uppercase tracking-[0.22em] text-[var(--ink)] transition-all duration-300 hover:bg-white"
               >
                 Private Service anfragen
@@ -160,8 +250,13 @@ export default function Premium({
             </div>
           </div>
 
-          {/* SMALL SERVICE MARKERS */}
-          <div className="mt-16 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/10 pt-5">
+          {/* DETAILS */}
+          <motion.div
+            style={{
+              y: detailsY,
+            }}
+            className="mt-16 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/10 pt-5"
+          >
             <span className="text-[8px] uppercase tracking-[0.26em] text-white/30">
               Beratung
             </span>
@@ -177,7 +272,7 @@ export default function Premium({
             <span className="text-[8px] uppercase tracking-[0.26em] text-white/30">
               Whisky Pairing
             </span>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
