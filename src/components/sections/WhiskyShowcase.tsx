@@ -201,10 +201,9 @@ export default function WhiskyShowcase({
                 duration: 0.55,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="font-display whitespace-nowrap font-medium leading-none text-black/[0.055]"
+              className="font-display whitespace-nowrap font-medium leading-none text-black/[0.035]"
               style={{
-                fontSize:
-                  "clamp(9rem, 21vw, 22rem)",
+                fontSize: "clamp(9rem, 21vw, 22rem)",
                 marginLeft: "-3vw",
               }}
             >
@@ -213,12 +212,33 @@ export default function WhiskyShowcase({
           </AnimatePresence>
         </div>
 
-        {/* VERTICAL LINE */}
-        <div className="absolute bottom-0 left-[37%] top-0 z-[1] hidden w-px bg-[var(--line-dark)] lg:block" />
-
         <div className="container-main relative z-10 grid min-h-[760px] items-center py-16 lg:grid-cols-12">
+          {/* PREVIOUS BOTTLE */}
+          <div className="relative hidden h-[540px] lg:col-span-2 lg:block">
+            <motion.button
+              onClick={previous}
+              aria-label="Vorherige Flasche"
+              whileHover={
+                reduceMotion
+                  ? undefined
+                  : {
+                      x: 8,
+                      opacity: 0.42,
+                    }
+              }
+              className="absolute left-[8%] top-1/2 -translate-y-1/2 cursor-pointer xl:left-[12%]"
+            >
+              <img
+                src={previousWhisky.image}
+                alt=""
+                draggable={false}
+                className="h-[340px] w-[190px] select-none object-contain opacity-25 grayscale-[25%] drop-shadow-[0_20px_18px_rgba(0,0,0,0.12)] xl:w-[210px]"
+              />
+            </motion.button>
+          </div>
+
           {/* INFORMATION */}
-          <div className="lg:col-span-4">
+          <div className="relative z-20 lg:col-span-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={whisky.id}
@@ -238,14 +258,11 @@ export default function WhiskyShowcase({
                   duration: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="max-w-[340px] lg:ml-auto lg:mr-8 xl:mr-12"
+                className="relative max-w-[340px] lg:ml-auto lg:mr-[-12px]"
               >
                 <p className="eyebrow mb-8 text-[var(--muted-dark)]">
                   Selected bottle ·{" "}
-                  {String(active + 1).padStart(
-                    2,
-                    "0"
-                  )}
+                  {String(active + 1).padStart(2, "0")}
                 </p>
 
                 <h3 className="font-display text-4xl font-medium tracking-[-0.03em]">
@@ -276,32 +293,10 @@ export default function WhiskyShowcase({
             </AnimatePresence>
           </div>
 
-          {/* BOTTLE CAROUSEL */}
-          <div className="relative h-[540px] overflow-visible lg:col-span-6">
-            {/* PREVIOUS BOTTLE */}
-            <motion.button
-              onClick={previous}
-              aria-label="Vorherige Flasche"
-              whileHover={
-                reduceMotion
-                  ? undefined
-                  : {
-                      x: 8,
-                      opacity: 0.42,
-                    }
-              }
-              className="absolute left-[-15%] top-1/2 z-0 hidden -translate-y-1/2 cursor-pointer lg:block"
-            >
-              <img
-                src={previousWhisky.image}
-                alt=""
-                draggable={false}
-                className="h-[340px] w-[210px] select-none object-contain opacity-25 grayscale-[25%] drop-shadow-[0_20px_18px_rgba(0,0,0,0.12)]"
-              />
-            </motion.button>
-
+          {/* ACTIVE + NEXT BOTTLE */}
+          <div className="relative h-[540px] overflow-visible lg:col-span-4">
             {/* ACTIVE BOTTLE */}
-            <div className="absolute inset-0 z-10 flex items-center justify-center">
+            <div className="absolute inset-0 z-10 flex items-center justify-start">
               <AnimatePresence
                 mode="wait"
                 custom={direction}
@@ -326,9 +321,7 @@ export default function WhiskyShowcase({
                   onDragEnd={handleDragEnd}
                   whileDrag={{
                     cursor: "grabbing",
-                    scale: reduceMotion
-                      ? 1
-                      : 0.98,
+                    scale: reduceMotion ? 1 : 0.98,
                   }}
                   className="z-10 cursor-grab touch-pan-y"
                 >
@@ -354,7 +347,7 @@ export default function WhiskyShowcase({
                       opacity: 0.42,
                     }
               }
-              className="absolute right-[-15%] top-1/2 z-0 hidden -translate-y-1/2 cursor-pointer lg:block"
+              className="absolute right-[-24%] top-1/2 z-0 hidden -translate-y-1/2 cursor-pointer lg:block"
             >
               <img
                 src={nextWhisky.image}
@@ -409,6 +402,31 @@ export default function WhiskyShowcase({
               </span>
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* MORE IN STORE */}
+      <div className="container-main pb-16 md:pb-20">
+        <div className="flex flex-col gap-6 border-t border-[var(--line-dark)] pt-7 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-start gap-5">
+            <span className="mt-[7px] h-px w-8 shrink-0 bg-[var(--ink)]" />
+
+            <div>
+              <p className="eyebrow text-[var(--muted-dark)]">
+                Mehr entdecken
+              </p>
+
+              <p className="mt-2 font-display text-xl font-medium md:text-2xl">
+                Das ist nur eine kleine Auswahl.
+              </p>
+            </div>
+          </div>
+
+          <p className="max-w-md text-xs leading-5 text-[var(--muted-dark)] md:text-right">
+            Weitere Whiskys und Spirituosen entdecken Sie
+            in unseren Depots. Wir beraten Sie gerne
+            persönlich bei der Auswahl.
+          </p>
         </div>
       </div>
     </section>
