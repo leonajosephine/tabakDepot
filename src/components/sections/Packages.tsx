@@ -14,16 +14,16 @@ type PackagesProps = {
 
 const packages = [
   {
-    id: "box",
+    id: "event",
     number: "01",
-    title: "Die Zigarrenbox",
+    title: "Das Event-Paket",
     type: "Versand · Abholung",
     description:
-      "Eine individuell zusammengestellte Auswahl für Ihren Anlass – hochwertig vorbereitet und bereit zum Genießen.",
+      "Eine individuell für Ihren Anlass zusammengestellte Zigarrenauswahl – hochwertig vorbereitet und bequem per Versand oder zur Abholung.",
     features: [
       "Individuelle Zigarrenauswahl",
-      "Passend zur Gästeanzahl",
-      "Hochwertig zusammengestellt",
+      "Abgestimmt auf Anlass & Gäste",
+      "Hochwertig vorbereitet",
       "Versand oder Abholung",
     ],
     price: "ab 89 €",
@@ -31,12 +31,12 @@ const packages = [
       "https://images.unsplash.com/photo-1749842839766-8b71630a627d?auto=format&fit=crop&w=1200&q=85",
   },
   {
-    id: "event",
+    id: "service",
     number: "02",
-    title: "Das Event-Paket",
-    type: "Aufbau · Event · Abbau",
+    title: "Der Event-Service",
+    type: "Lieferung · Aufbau · Abbau",
     description:
-      "Wir liefern nicht nur die Zigarren, sondern das passende Setting gleich mit – vorbereitet für Ihren besonderen Abend.",
+      "Wir bringen das Zigarrenerlebnis zu Ihrer Veranstaltung, kümmern uns um Aufbau und Präsentation und holen das Equipment anschließend wieder ab.",
     features: [
       "Individuelle Zigarrenauswahl",
       "Equipment & Präsentation",
@@ -50,14 +50,14 @@ const packages = [
   {
     id: "premium",
     number: "03",
-    title: "Private Service",
-    type: "Persönlich · Betreut",
+    title: "Das Premium-Paket",
+    type: "Personal vor Ort · Persönlich betreut",
     description:
-      "Das vollständig begleitete Erlebnis mit persönlichem Sommelier – individuell abgestimmt auf Ihren Abend und Ihre Gäste.",
+      "Das vollständig begleitete Zigarrenerlebnis mit unserem Personal vor Ort – auf Wunsch ergänzt durch einen Sommelier und ein abgestimmtes Whisky-Pairing.",
     features: [
+      "Personal während des Events",
+      "Betreuung Ihrer Gäste",
       "Persönlicher Sommelier",
-      "Beratung Ihrer Gäste",
-      "Komplette Event-Begleitung",
       "Whisky-Pairing auf Wunsch",
     ],
     price: "auf Anfrage",
@@ -217,9 +217,9 @@ export default function Packages({
             className="flex items-end lg:col-span-5 lg:col-start-8"
           >
             <p className="max-w-xl text-sm leading-6 text-[var(--muted-dark)] md:text-[15px] md:leading-7">
-              Von der individuell zusammengestellten
-              Zigarrenbox bis zum persönlich begleiteten
-              Abend: Sie entscheiden, wie viel wir für
+              Von Versand oder Abholung über Aufbau
+              und Abbau bis zur persönlichen Begleitung
+              vor Ort: Sie entscheiden, wie viel wir für
               Ihr Event übernehmen.
             </p>
           </motion.div>
@@ -274,7 +274,7 @@ export default function Packages({
 
                 {item.premium && (
                   <div className="absolute bottom-0 left-0 bg-[var(--ink)] px-3 py-2.5 text-[7px] uppercase tracking-[0.23em] text-[var(--cream)]">
-                    Private Service
+                    Premium-Paket
                   </div>
                 )}
               </div>
@@ -411,7 +411,7 @@ export default function Packages({
 
                   {item.premium && (
                     <div className="absolute bottom-0 left-0 bg-[var(--ink)] px-4 py-3 text-[8px] uppercase tracking-[0.25em] text-[var(--cream)]">
-                      Private Service
+                      Premium-Paket
                     </div>
                   )}
                 </div>
@@ -493,7 +493,7 @@ export default function Packages({
           <span className="h-px flex-1 bg-[var(--line-dark)]" />
 
           <span className="text-[8px] uppercase tracking-[0.28em] text-[var(--muted-dark)]">
-            Auswahl · Vorbereitung · Begleitung
+            Versand · Event-Service · Persönliche Begleitung
           </span>
         </motion.div>
       </div>

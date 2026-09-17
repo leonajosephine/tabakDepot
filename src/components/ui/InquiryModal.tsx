@@ -34,32 +34,41 @@ type FormData = {
 const packageOptions = [
   {
     value: "",
-    label: "Noch nicht entschieden",
-  },
-  {
-    value: "box",
-    label: "Die Zigarrenbox",
+    label: "Noch unsicher / Beratung",
   },
   {
     value: "event",
-    label: "Das Event-Paket",
+    label: "Event-Paket · Versand oder Abholung",
+  },
+  {
+    value: "service",
+    label: "Event-Service · Auf- & Abbau",
   },
   {
     value: "premium",
-    label: "Private Service",
+    label: "Premium-Paket · Personal vor Ort",
+  },
+  {
+    value: "whisky",
+    label: "Whisky / Spirituosen",
   },
 ];
 
 const whiskyOptions = [
   {
     value: "recommendation",
-    title: "Ja, gerne",
-    text: "Mit Whisky-Empfehlung",
+    title: "Whisky ergänzen",
+    text: "Als Ergänzung oder Pairing",
   },
   {
     value: "cigars-only",
     title: "Nur Zigarren",
     text: "Ohne Spirituosen",
+  },
+  {
+    value: "whisky-only",
+    title: "Nur Whisky",
+    text: "Unabhängig von Zigarren",
   },
   {
     value: "advice",
@@ -84,7 +93,7 @@ export default function InquiryModal({
       date: "",
       guests: "",
       location: "",
-      whiskyPairing: "",
+      whiskyPairing: selectedPackage === "whisky" ? "whisky-only" : "",
       message: "",
     });
 
@@ -259,7 +268,7 @@ export default function InquiryModal({
                   <div className="grid gap-5 pr-12 md:grid-cols-[1fr_280px] md:items-end">
                     <div>
                       <p className="eyebrow text-[var(--muted-dark)]">
-                        Event-Anfrage
+                        Unverbindliche Anfrage
                       </p>
 
                       <h2
@@ -274,15 +283,15 @@ export default function InquiryModal({
                         <br />
                         Ihrem{" "}
                         <span className="italic text-[var(--muted-dark)]">
-                          Anlass.
+                          Anliegen.
                         </span>
                       </h2>
                     </div>
 
                     <p className="max-w-[280px] text-xs leading-5 text-[var(--muted-dark)]">
-                      Wir stellen Zigarren, Service und
-                      auf Wunsch das passende Pairing
-                      individuell für Sie zusammen.
+                      Ob Zigarren-Event, persönlicher
+                      Service oder Whisky: Wir beraten Sie
+                      unverbindlich und individuell.
                     </p>
                   </div>
 
@@ -292,7 +301,7 @@ export default function InquiryModal({
                     <div className="grid gap-4 md:grid-cols-2">
                       <SelectField
                         id="package"
-                        label="Gewünschtes Erlebnis"
+                        label="Wofür interessieren Sie sich?"
                         value={formData.package}
                         onChange={(value) =>
                           updateField(
@@ -396,7 +405,7 @@ export default function InquiryModal({
                     <div className="mt-6">
                       <div className="mb-3 flex items-center gap-3">
                         <p className="text-[9px] font-medium uppercase tracking-[0.18em] text-[var(--muted-dark)]">
-                          Passende Whisky-Ergänzung?
+                          Whisky & Spirituosen
                         </p>
 
                         <span className="text-[8px] uppercase tracking-[0.18em] text-black/30">
@@ -404,7 +413,7 @@ export default function InquiryModal({
                         </span>
                       </div>
 
-                      <div className="grid gap-2 sm:grid-cols-3">
+                      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
                         {whiskyOptions.map(
                           (option) => {
                             const selected =
@@ -483,7 +492,7 @@ export default function InquiryModal({
                           )
                         }
                         rows={3}
-                        placeholder="Erzählen Sie uns kurz von Ihrem Anlass oder besonderen Wünschen ..."
+                        placeholder="Erzählen Sie uns kurz von Ihrem Anlass, Ihrer Whisky-Anfrage oder besonderen Wünschen ..."
                         className="w-full resize-none border border-black/10 bg-[var(--cream)] px-4 py-3 text-sm leading-5 outline-none transition-colors placeholder:text-black/25 focus:border-black/40"
                       />
                     </div>

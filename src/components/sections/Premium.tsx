@@ -190,7 +190,7 @@ export default function Premium({
             <span className="h-px w-16 bg-white/30" />
 
             <span className="eyebrow text-white/45">
-              Private Service
+              Premium-Paket
             </span>
           </div>
 
@@ -218,25 +218,26 @@ export default function Premium({
               </p>
 
               <p className="font-display text-3xl font-medium leading-[1.05] md:text-4xl">
-                Mit persönlichem
+                Persönlich begleitet.
                 <br />
-                Sommelier.
+                Mit Sommelier.
               </p>
             </div>
 
             <div>
               <p className="text-sm leading-6 text-white/55">
-                Unser Sommelier begleitet Ihr Event
-                persönlich, berät Ihre Gäste bei der
-                Auswahl und führt auf Wunsch durch die
-                Welt der Zigarren – vom passenden
-                Format bis zum richtigen Genuss.
+                Bei unserem Premium-Paket ist unser
+                Personal während Ihrer Veranstaltung
+                vor Ort, betreut Ihre Gäste und kümmert
+                sich um das Zigarrenerlebnis – von der
+                Präsentation bis zur passenden Auswahl.
               </p>
 
               <p className="mt-4 text-sm leading-6 text-white/55">
-                Auf Wunsch ergänzen wir das Erlebnis
-                um ein individuell abgestimmtes
-                Whisky-Pairing.
+                Für eine besonders exklusive Begleitung
+                ist auch ein Sommelier für Sie vor Ort.
+                Ebenso kann auf Wunsch ein
+                individuell abgestimmtes Whisky-Pairing.
               </p>
 
               <button
@@ -245,7 +246,7 @@ export default function Premium({
                 }
                 className="mt-9 bg-[var(--cream)] px-6 py-3.5 text-[9px] font-semibold uppercase tracking-[0.22em] text-[var(--ink)] transition-all duration-300 hover:bg-white"
               >
-                Private Service anfragen
+                Premium-Paket anfragen
               </button>
             </div>
           </div>
@@ -258,7 +259,7 @@ export default function Premium({
             className="mt-16 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/10 pt-5"
           >
             <span className="text-[8px] uppercase tracking-[0.26em] text-white/30">
-              Beratung
+              Personal vor Ort
             </span>
 
             <span className="text-[8px] uppercase tracking-[0.26em] text-white/30">
@@ -266,7 +267,7 @@ export default function Premium({
             </span>
 
             <span className="text-[8px] uppercase tracking-[0.26em] text-white/30">
-              Begleitung
+              Sommelier auf Wunsch
             </span>
 
             <span className="text-[8px] uppercase tracking-[0.26em] text-white/30">

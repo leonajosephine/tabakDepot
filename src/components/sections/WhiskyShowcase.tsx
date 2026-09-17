@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 
 type WhiskyShowcaseProps = {
-  onInquiry?: () => void;
+  onInquiry?: (inquiryType?: string) => void;
 };
 
 const whiskies = [
@@ -170,10 +170,10 @@ export default function WhiskyShowcase({
           </div>
 
           <p className="max-w-lg self-end text-sm leading-6 text-[var(--muted-dark)] lg:col-span-4 lg:col-start-9">
-            Eine kleine Auswahl aus unserem Sortiment.
-            Persönliche Empfehlungen und weitere
-            Spirituosen finden Sie direkt in unseren
-            Depots.
+            Ob als Ergänzung zum Zigarrenerlebnis,
+            als individuelles Pairing oder ganz für sich:
+            Entdecken Sie eine kleine Auswahl aus unserem
+            Sortiment.
           </p>
         </div>
       </div>
@@ -344,10 +344,10 @@ export default function WhiskyShowcase({
               </p>
 
               <button
-                onClick={onInquiry}
+                onClick={() => onInquiry?.("whisky")}
                 className="mt-7 text-[8px] uppercase tracking-[0.21em] underline decoration-black/30 underline-offset-[6px]"
               >
-                Pairing anfragen
+                Whisky anfragen
               </button>
             </motion.div>
           </AnimatePresence>
@@ -463,10 +463,10 @@ export default function WhiskyShowcase({
                 </p>
 
                 <button
-                  onClick={onInquiry}
+                  onClick={() => onInquiry?.("whisky")}
                   className="mt-8 text-[9px] uppercase tracking-[0.22em] underline decoration-black/30 underline-offset-[7px] transition-opacity hover:opacity-50"
                 >
-                  Pairing anfragen
+                  Whisky anfragen
                 </button>
               </motion.div>
             </AnimatePresence>
@@ -597,8 +597,8 @@ export default function WhiskyShowcase({
 
           <p className="max-w-md text-xs leading-5 text-[var(--muted-dark)] md:text-right">
             Weitere Whiskys und Spirituosen entdecken Sie
-            in unseren Depots. Wir beraten Sie gerne
-            persönlich bei der Auswahl.
+            in unseren Depots – für Ihr Event, als Pairing
+            oder unabhängig von einem Zigarren-Paket.
           </p>
         </div>
       </div>

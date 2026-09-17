@@ -121,7 +121,7 @@ export default function Intro() {
             className="lg:col-span-3"
           >
             <p className="eyebrow text-[var(--muted-dark)]">
-              Mehr als ein Fachgeschäft
+              Über uns · seit 1978
             </p>
 
             <div className="mt-8 hidden lg:block">
@@ -134,8 +134,6 @@ export default function Intro() {
 
               <p className="mt-4 text-[8px] uppercase leading-5 tracking-[0.28em] text-[var(--muted-dark)]">
                 Minden
-                <br />
-                seit 1978
               </p>
             </div>
           </motion.div>
@@ -189,17 +187,15 @@ export default function Intro() {
           {/* CHAPTER */}
           <div className="lg:col-span-2">
             <p className="text-[8px] uppercase tracking-[0.28em] text-[var(--muted-dark)]">
-              Chapter 01
+              Unsere Geschichte
             </p>
 
             <p className="mt-3 font-display text-2xl italic">
-              Genusskultur
+              Gewachsen in Minden
             </p>
 
             <p className="mt-7 text-[9px] uppercase leading-5 tracking-[0.22em] text-[var(--muted-dark)]/60">
-              Seit 1978
-              <br />
-              drei Standorte
+              Drei Standorte
               <br />
               in Minden
             </p>
@@ -208,26 +204,28 @@ export default function Intro() {
           {/* STATEMENT */}
           <div className="lg:col-span-3 lg:col-start-5">
             <p className="font-display text-[28px] font-medium leading-[1.08] tracking-[-0.02em]">
-              Persönliche Beratung.
+              Vom Fachgeschäft
               <br />
-              Ausgewählte Produkte.
+              zum besonderen
               <br />
-              Besondere Momente.
+              Genusserlebnis.
             </p>
           </div>
 
           {/* COPY */}
           <div className="lg:col-span-4 lg:col-start-9">
             <p className="text-[14px] leading-7 text-[var(--muted-dark)]">
-              Tabak Depot Uphoff verbindet seit 1978 die Welt ausgewählter
-              Zigarren und Spirituosen mit persönlicher Beratung und einem
-              besonderen Event-Service.
+              Seit 1978 steht Tabak Depot Uphoff in Minden für persönliche
+              Beratung, ausgewählte Zigarren und besondere Spirituosen. Über
+              die Jahre ist aus dem Fachgeschäft eine Genussadresse mit heute
+              drei Standorten in Minden geworden.
             </p>
 
             <p className="mt-5 text-[14px] leading-7 text-[var(--muted-dark)]">
-              Heute sind wir an drei Standorten in Minden für unsere Kunden da
-              – und bringen diese Genusskultur auf Wunsch auch direkt zu Ihrer
-              Veranstaltung.
+              Gleichzeitig hat sich auch unser Angebot weiterentwickelt: Mit
+              individuell zusammengestellten Paketen und persönlichem
+              Event-Service bringen wir die Erfahrung aus unseren Depots heute
+              auch direkt zu besonderen Anlässen und Veranstaltungen.
             </p>
           </div>
         </motion.div>
@@ -247,7 +245,7 @@ export default function Intro() {
             }}
             className="whitespace-nowrap text-[8px] uppercase tracking-[0.3em] text-[var(--muted-dark)]"
           >
-            Minden · Tradition & Genuss
+            Seit 1978 · Drei Standorte · Event-Service
           </motion.span>
         </div>
       </div>
