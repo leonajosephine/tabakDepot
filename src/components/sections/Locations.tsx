@@ -14,18 +14,24 @@ const locations = [
     name: "Depot Innenstadt",
     address: "Marktstraße 12\n32423 Minden",
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+    image:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=85",
   },
   {
     number: "02",
     name: "Depot Nord",
     address: "Wesertor 24\n32425 Minden",
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+    image:
+      "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=900&q=85",
   },
   {
     number: "03",
     name: "Depot Süd",
     address: "Königstraße 41\n32427 Minden",
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=85",
   },
 ];
 
@@ -86,8 +92,9 @@ export default function Locations() {
 
           <div className="self-end lg:col-span-4 lg:col-start-9">
             <p className="max-w-sm text-sm leading-6 text-[var(--muted-dark)]">
-              Persönliche Beratung, unser vollständiges Sortiment und Zeit
-              für Ihre Fragen finden Sie direkt in unseren drei Depots.
+              Persönliche Beratung, unser vollständiges
+              Sortiment und Zeit für Ihre Fragen finden
+              Sie direkt in unseren drei Depots.
             </p>
           </div>
         </div>
@@ -149,13 +156,49 @@ export default function Locations() {
                   duration: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="relative z-10 mt-8 font-display text-3xl font-medium"
+                className="relative z-10 mt-8 font-display text-3xl font-medium leading-[0.95]"
               >
                 {location.name}
               </motion.h3>
 
+              {/* LOCATION IMAGE */}
+              <div className="relative z-10 mt-6 aspect-[16/9] w-full overflow-hidden bg-[#ddd5ca]">
+                <motion.img
+                  src={location.image}
+                  alt=""
+                  variants={{
+                    rest: {
+                      scale: 1.03,
+                    },
+                    hover: {
+                      scale: reduceMotion ? 1.03 : 1.075,
+                    },
+                  }}
+                  transition={{
+                    duration: 0.7,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="h-full w-full object-cover grayscale-[20%]"
+                />
+
+                <motion.div
+                  variants={{
+                    rest: {
+                      opacity: 0.08,
+                    },
+                    hover: {
+                      opacity: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 0.5,
+                  }}
+                  className="pointer-events-none absolute inset-0 bg-black"
+                />
+              </div>
+
               {/* ADDRESS */}
-              <p className="relative z-10 mt-5 whitespace-pre-line text-sm leading-6 text-[var(--muted-dark)]">
+              <p className="relative z-10 mt-6 whitespace-pre-line text-sm leading-6 text-[var(--muted-dark)]">
                 {location.address}
               </p>
 
