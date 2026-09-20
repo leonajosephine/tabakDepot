@@ -143,14 +143,14 @@ export default function Footer({
 
           <div className="flex gap-6">
             <a
-              href="#"
+              href="/impressum"
               className="transition-colors hover:text-white/50"
             >
               Impressum
             </a>
 
             <a
-              href="#"
+              href="/datenschutz"
               className="transition-colors hover:text-white/50"
             >
               Datenschutz
