@@ -120,11 +120,7 @@ export default function WhiskyShowcase({
 
   const productVariants = {
     enter: (direction: number) => ({
-      x: reduceMotion
-        ? 0
-        : direction > 0
-          ? 150
-          : -150,
+      x: reduceMotion ? 0 : direction > 0 ? 150 : -150,
       opacity: 0,
       scale: reduceMotion ? 1 : 0.92,
     }),
@@ -136,11 +132,7 @@ export default function WhiskyShowcase({
     },
 
     exit: (direction: number) => ({
-      x: reduceMotion
-        ? 0
-        : direction > 0
-          ? -150
-          : 150,
+      x: reduceMotion ? 0 : direction > 0 ? -150 : 150,
       opacity: 0,
       scale: reduceMotion ? 1 : 0.92,
     }),
@@ -152,14 +144,14 @@ export default function WhiskyShowcase({
       className="relative overflow-hidden bg-[var(--cream)] text-[var(--ink)]"
     >
       {/* HEADER */}
-      <div className="container-main border-b border-[var(--line-dark)] py-16 md:py-20">
-        <div className="grid gap-8 lg:grid-cols-12">
+      <div className="container-main border-b border-[var(--line-dark)] py-12 md:py-20">
+        <div className="grid gap-6 md:gap-8 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow mb-5 text-[var(--muted-dark)]">
               Whisky & Spirituosen
             </p>
 
-            <h2 className="font-display text-5xl font-medium leading-none tracking-[-0.04em] md:text-7xl">
+            <h2 className="font-display text-[3.25rem] font-medium leading-[0.92] tracking-[-0.04em] md:text-7xl md:leading-none">
               Der passende
               <br />
 
@@ -169,22 +161,17 @@ export default function WhiskyShowcase({
             </h2>
           </div>
 
-          <p className="max-w-lg self-end text-sm leading-6 text-[var(--muted-dark)] lg:col-span-4 lg:col-start-9">
-            Ob als Ergänzung zum Zigarrenerlebnis,
-            als individuelles Pairing oder ganz für sich:
-            Entdecken Sie eine kleine Auswahl aus unserem
-            Sortiment.
+          <p className="max-w-lg self-end text-[13px] leading-6 text-[var(--muted-dark)] md:text-sm lg:col-span-4 lg:col-start-9">
+            Ob als Ergänzung zum Zigarrenerlebnis, als individuelles
+            Pairing oder ganz für sich: Entdecken Sie eine kleine Auswahl
+            aus unserem Sortiment.
           </p>
         </div>
       </div>
 
-      {/* ================================= */}
-      {/* MOBILE SHOWCASE                   */}
-      {/* ================================= */}
-
+      {/* MOBILE SHOWCASE */}
       <div className="relative lg:hidden">
-        {/* PRODUCT STAGE */}
-        <div className="relative h-[520px] overflow-hidden">
+        <div className="relative h-[450px] overflow-hidden sm:h-[500px]">
           {/* GHOST TYPOGRAPHY */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
             <AnimatePresence mode="wait">
@@ -206,7 +193,7 @@ export default function WhiskyShowcase({
                   duration: 0.5,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-display whitespace-nowrap text-[8.5rem] font-medium leading-none text-black/[0.04]"
+                className="whitespace-nowrap font-display text-[7rem] font-medium leading-none text-black/[0.04] sm:text-[8.5rem]"
               >
                 {whisky.category}
               </motion.p>
@@ -214,7 +201,7 @@ export default function WhiskyShowcase({
           </div>
 
           {/* NUMBER */}
-          <div className="container-main absolute left-0 right-0 top-7 z-10 flex items-center justify-between">
+          <div className="container-main absolute left-0 right-0 top-6 z-10 flex items-center justify-between">
             <span className="eyebrow text-[var(--muted-dark)]">
               Selected bottle
             </span>
@@ -227,10 +214,7 @@ export default function WhiskyShowcase({
 
           {/* ACTIVE BOTTLE */}
           <div className="absolute inset-0 z-10 flex items-center justify-center pt-8">
-            <AnimatePresence
-              mode="wait"
-              custom={direction}
-            >
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={whisky.id}
                 custom={direction}
@@ -259,23 +243,23 @@ export default function WhiskyShowcase({
                   src={whisky.image}
                   alt={whisky.name}
                   draggable={false}
-                  className="h-[390px] w-[250px] select-none object-contain drop-shadow-[0_28px_24px_rgba(0,0,0,0.18)] sm:h-[430px] sm:w-[280px]"
+                  className="h-[340px] w-[220px] select-none object-contain drop-shadow-[0_28px_24px_rgba(0,0,0,0.18)] sm:h-[410px] sm:w-[270px]"
                 />
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <p className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap text-[7px] uppercase tracking-[0.25em] text-[var(--muted-dark)]/55">
+          <p className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap text-[7px] uppercase tracking-[0.25em] text-[var(--muted-dark)]/55">
             Swipe to explore
           </p>
         </div>
 
         {/* MOBILE CONTROLS */}
         <div className="container-main">
-          <div className="flex items-center justify-between border-y border-[var(--line-dark)] py-5">
+          <div className="flex items-center justify-between border-y border-[var(--line-dark)] py-4">
             <button
               onClick={previous}
-              className="flex items-center gap-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
+              className="flex items-center gap-2 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
             >
               <span>←</span>
               Prev
@@ -298,14 +282,13 @@ export default function WhiskyShowcase({
 
             <button
               onClick={next}
-              className="flex items-center gap-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
+              className="flex items-center gap-2 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
             >
               Next
               <span>→</span>
             </button>
           </div>
 
-          {/* MOBILE INFORMATION */}
           <AnimatePresence mode="wait">
             <motion.div
               key={whisky.id}
@@ -325,27 +308,27 @@ export default function WhiskyShowcase({
                 duration: 0.4,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="py-9"
+              className="py-7"
             >
               <p className="text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]">
                 {whisky.origin}
               </p>
 
-              <h3 className="mt-3 font-display text-[2.7rem] font-medium leading-none tracking-[-0.035em]">
+              <h3 className="mt-3 font-display text-[2.5rem] font-medium leading-none tracking-[-0.035em]">
                 {whisky.name}
               </h3>
 
-              <p className="mt-5 font-display text-xl italic text-[var(--muted-dark)]">
+              <p className="mt-4 font-display text-lg italic text-[var(--muted-dark)]">
                 {whisky.note}
               </p>
 
-              <p className="mt-5 max-w-md text-[13px] leading-[1.7] text-[var(--muted-dark)]">
+              <p className="mt-4 max-w-md text-[13px] leading-6 text-[var(--muted-dark)]">
                 {whisky.description}
               </p>
 
               <button
                 onClick={() => onInquiry?.("whisky")}
-                className="mt-7 text-[8px] uppercase tracking-[0.21em] underline decoration-black/30 underline-offset-[6px]"
+                className="mt-6 text-[8px] uppercase tracking-[0.21em] underline decoration-black/30 underline-offset-[6px]"
               >
                 Whisky anfragen
               </button>
@@ -354,12 +337,8 @@ export default function WhiskyShowcase({
         </div>
       </div>
 
-      {/* ================================= */}
-      {/* DESKTOP SHOWCASE                  */}
-      {/* ================================= */}
-
+      {/* DESKTOP SHOWCASE */}
       <div className="relative hidden min-h-[760px] lg:block">
-        {/* BACKGROUND TYPOGRAPHY */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.p
@@ -380,7 +359,7 @@ export default function WhiskyShowcase({
                 duration: 0.55,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="font-display whitespace-nowrap font-medium leading-none text-black/[0.035]"
+              className="whitespace-nowrap font-display font-medium leading-none text-black/[0.035]"
               style={{
                 fontSize: "clamp(9rem, 21vw, 22rem)",
                 marginLeft: "-3vw",
@@ -392,7 +371,6 @@ export default function WhiskyShowcase({
         </div>
 
         <div className="container-main relative z-10 grid min-h-[760px] items-center py-16 lg:grid-cols-12">
-          {/* PREVIOUS BOTTLE */}
           <div className="relative hidden h-[540px] lg:col-span-2 lg:block">
             <motion.button
               onClick={previous}
@@ -416,7 +394,6 @@ export default function WhiskyShowcase({
             </motion.button>
           </div>
 
-          {/* INFORMATION */}
           <div className="relative z-20 lg:col-span-4">
             <AnimatePresence mode="wait">
               <motion.div
@@ -472,13 +449,9 @@ export default function WhiskyShowcase({
             </AnimatePresence>
           </div>
 
-          {/* ACTIVE + NEXT BOTTLE */}
           <div className="relative h-[540px] overflow-visible lg:col-span-4">
             <div className="absolute inset-0 z-10 flex items-center justify-start">
-              <AnimatePresence
-                mode="wait"
-                custom={direction}
-              >
+              <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={whisky.id}
                   custom={direction}
@@ -513,7 +486,6 @@ export default function WhiskyShowcase({
               </AnimatePresence>
             </div>
 
-            {/* NEXT BOTTLE */}
             <motion.button
               onClick={next}
               aria-label="Nächste Flasche"
@@ -536,7 +508,6 @@ export default function WhiskyShowcase({
             </motion.button>
           </div>
 
-          {/* CONTROLS */}
           <div className="mt-10 flex items-center justify-between gap-8 lg:col-span-2 lg:mt-0 lg:flex-col lg:items-end">
             <button
               onClick={previous}
@@ -545,7 +516,6 @@ export default function WhiskyShowcase({
               <span className="transition-transform duration-300 group-hover:-translate-x-1">
                 ←
               </span>
-
               Prev
             </button>
 
@@ -569,7 +539,6 @@ export default function WhiskyShowcase({
               className="group flex items-center gap-4 text-[9px] uppercase tracking-[0.25em] text-[var(--muted-dark)] transition-colors hover:text-black"
             >
               Next
-
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
@@ -579,10 +548,10 @@ export default function WhiskyShowcase({
       </div>
 
       {/* MORE IN STORE */}
-      <div className="container-main pb-16 md:pb-20">
-        <div className="flex flex-col gap-6 border-t border-[var(--line-dark)] pt-7 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-start gap-5">
-            <span className="mt-[7px] h-px w-8 shrink-0 bg-[var(--ink)]" />
+      <div className="container-main pb-12 md:pb-20">
+        <div className="flex flex-col gap-5 border-t border-[var(--line-dark)] pt-6 md:flex-row md:items-center md:justify-between md:gap-6 md:pt-7">
+          <div className="flex items-start gap-4 md:gap-5">
+            <span className="mt-[7px] h-px w-7 shrink-0 bg-[var(--ink)] md:w-8" />
 
             <div>
               <p className="eyebrow text-[var(--muted-dark)]">
@@ -595,10 +564,10 @@ export default function WhiskyShowcase({
             </div>
           </div>
 
-          <p className="max-w-md text-xs leading-5 text-[var(--muted-dark)] md:text-right">
-            Weitere Whiskys und Spirituosen entdecken Sie
-            in unseren Depots – für Ihr Event, als Pairing
-            oder unabhängig von einem Zigarren-Paket.
+          <p className="max-w-md text-[12px] leading-5 text-[var(--muted-dark)] md:text-right">
+            Weitere Whiskys und Spirituosen entdecken Sie in unseren
+            Depots – für Ihr Event, als Pairing oder unabhängig von einem
+            Zigarren-Paket.
           </p>
         </div>
       </div>

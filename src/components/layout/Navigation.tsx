@@ -64,7 +64,6 @@ export default function Navigation({
         }}
       >
         <div className="container-main flex h-[74px] items-center justify-between md:h-[84px] lg:grid lg:grid-cols-[1fr_auto_1fr]">
-          {/* BRAND */}
           <a
             href="#"
             onClick={() => setMenuOpen(false)}
@@ -90,7 +89,6 @@ export default function Navigation({
             </div>
           </a>
 
-          {/* DESKTOP NAVIGATION */}
           <nav className="hidden items-center gap-7 lg:flex xl:gap-9">
             {links.map((link) => (
               <a
@@ -103,41 +101,30 @@ export default function Navigation({
             ))}
           </nav>
 
-          {/* RIGHT */}
           <div className="relative z-50 flex items-center lg:justify-self-end">
             <button
               onClick={onInquiry}
               className="hidden items-center gap-3 text-[9px] uppercase tracking-[0.21em] text-white/60 transition-colors hover:text-white lg:flex"
             >
               Event anfragen
-
               <span className="text-sm">↗</span>
             </button>
 
-            {/* MOBILE MENU BUTTON */}
             <button
-              onClick={() =>
-                setMenuOpen((value) => !value)
-              }
+              onClick={() => setMenuOpen((value) => !value)}
               className="relative flex h-10 w-10 items-center justify-center lg:hidden"
-              aria-label={
-                menuOpen ? "Menü schließen" : "Menü öffnen"
-              }
+              aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
               aria-expanded={menuOpen}
             >
               <span
                 className={`absolute h-px w-5 bg-white transition-transform duration-300 ${
-                  menuOpen
-                    ? "rotate-45"
-                    : "-translate-y-[4px]"
+                  menuOpen ? "rotate-45" : "-translate-y-[4px]"
                 }`}
               />
 
               <span
                 className={`absolute h-px w-5 bg-white transition-transform duration-300 ${
-                  menuOpen
-                    ? "-rotate-45"
-                    : "translate-y-[4px]"
+                  menuOpen ? "-rotate-45" : "translate-y-[4px]"
                 }`}
               />
             </button>
@@ -145,7 +132,6 @@ export default function Navigation({
         </div>
       </header>
 
-      {/* MOBILE FULLSCREEN MENU */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -153,35 +139,29 @@ export default function Navigation({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#100e0c] text-[var(--cream)] lg:hidden"
+            className="fixed inset-0 z-40 overflow-y-auto bg-[#100e0c] text-[var(--cream)] lg:hidden"
           >
-            <div className="container-main flex h-full flex-col pb-8 pt-[112px]">
-              <nav className="flex flex-1 flex-col justify-center">
+            <div className="container-main flex min-h-full flex-col pb-8 pt-[96px]">
+              <nav className="flex flex-1 flex-col justify-center py-5">
                 {links.map((link, index) => (
                   <motion.a
                     key={link.label}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    initial={{
-                      opacity: 0,
-                      y: 20,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                    }}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{
                       delay: 0.04 + index * 0.045,
                       duration: 0.45,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="group flex items-center border-b border-white/10 py-4"
+                    className="group flex items-center border-b border-white/10 py-3.5 sm:py-4"
                   >
                     <span className="mr-5 text-[8px] uppercase tracking-[0.24em] text-white/25">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <span className="font-display text-[clamp(2.6rem,12vw,4.5rem)] font-medium leading-none tracking-[-0.035em]">
+                    <span className="font-display text-[clamp(2.25rem,10.5vw,4rem)] font-medium leading-none tracking-[-0.035em]">
                       {link.label}
                     </span>
 
@@ -192,7 +172,7 @@ export default function Navigation({
                 ))}
               </nav>
 
-              <div className="mt-8 flex items-end justify-between gap-8">
+              <div className="mt-6 flex items-end justify-between gap-5">
                 <div>
                   <p className="text-[8px] uppercase tracking-[0.28em] text-white/25">
                     Tabak Depot Uphoff
@@ -208,10 +188,9 @@ export default function Navigation({
                     setMenuOpen(false);
                     onInquiry?.();
                   }}
-                  className="flex items-center gap-4 bg-[var(--cream)] px-5 py-3.5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[var(--ink)]"
+                  className="shrink-0 bg-[var(--cream)] px-5 py-3.5 text-[8px] font-semibold uppercase tracking-[0.2em] text-[var(--ink)]"
                 >
-                  Event anfragen
-                  <span>↗</span>
+                  Event anfragen ↗
                 </button>
               </div>
             </div>

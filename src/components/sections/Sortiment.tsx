@@ -18,18 +18,13 @@ const assortment = [
   },
   {
     number: "03",
-    title: "Spirituosen",
-    text: "Rum, Cognac und weitere besondere Begleiter.",
+    title: "Zubehör",
+    text: "Cutter, Feuerzeuge, Humidore und alles für den Genuss.",
   },
   {
     number: "04",
-    title: "Tabakwaren",
-    text: "Zigaretten, Pfeifentabak, Feinschnitt und mehr.",
-  },
-  {
-    number: "05",
-    title: "Zubehör",
-    text: "Cutter, Feuerzeuge, Humidore und alles für den Genuss.",
+    title: "Vor Ort entdecken",
+    text: "Unser vollständiges Sortiment finden Sie in unseren Depots. Wir beraten Sie gerne persönlich.",
   },
 ];
 
@@ -39,17 +34,17 @@ export default function Sortiment() {
   return (
     <section
       id="sortiment"
-      className="overflow-hidden bg-[#161310] py-24 text-[var(--cream)] md:py-32"
+      className="overflow-hidden bg-[#161310] py-20 text-[var(--cream)] md:py-32"
     >
       <div className="container-main">
-        <div className="grid gap-12 lg:grid-cols-12">
+        <div className="grid gap-10 md:gap-12 lg:grid-cols-12">
           {/* INTRO */}
           <div className="lg:col-span-4">
-            <p className="eyebrow mb-6 text-white/35">
+            <p className="eyebrow mb-5 text-white/35 md:mb-6">
               Sortiment
             </p>
 
-            <h2 className="font-display text-5xl font-medium leading-[0.92] tracking-[-0.04em] md:text-7xl">
+            <h2 className="font-display text-[3.4rem] font-medium leading-[0.9] tracking-[-0.04em] md:text-7xl md:leading-[0.92]">
               Alles für
               <br />
               <span className="italic text-white/50">
@@ -69,22 +64,33 @@ export default function Sortiment() {
                   animate="rest"
                   className="group relative overflow-hidden border-b border-white/15"
                 >
-                  {/* subtle hover background */}
                   <motion.div
                     variants={{
-                      rest: {
-                        opacity: 0,
-                      },
-                      hover: {
-                        opacity: 1,
-                      },
+                      rest: { opacity: 0 },
+                      hover: { opacity: 1 },
                     }}
-                    transition={{
-                      duration: 0.35,
-                    }}
+                    transition={{ duration: 0.35 }}
                     className="pointer-events-none absolute inset-0 bg-white/[0.025]"
                   />
 
+                  {/* MOBILE */}
+                  <div className="relative py-5 md:hidden">
+                    <div className="flex items-baseline gap-4">
+                      <span className="w-7 shrink-0 text-[8px] tracking-[0.2em] text-white/30">
+                        {item.number}
+                      </span>
+
+                      <h3 className="font-display text-[1.8rem] font-medium leading-none">
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <p className="ml-11 mt-2 max-w-[290px] text-[12px] leading-5 text-white/40">
+                      {item.text}
+                    </p>
+                  </div>
+
+                  {/* TABLET + DESKTOP */}
                   <motion.div
                     variants={{
                       rest: {
@@ -100,9 +106,8 @@ export default function Sortiment() {
                       duration: 0.4,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="relative grid gap-3 md:grid-cols-[60px_1fr_1fr] md:items-center"
+                    className="relative hidden gap-3 md:grid md:grid-cols-[60px_1fr_1fr] md:items-center"
                   >
-                    {/* NUMBER */}
                     <motion.span
                       variants={{
                         rest: {
@@ -114,20 +119,15 @@ export default function Sortiment() {
                           x: reduceMotion ? 0 : 4,
                         },
                       }}
-                      transition={{
-                        duration: 0.35,
-                      }}
+                      transition={{ duration: 0.35 }}
                       className="text-[9px] tracking-[0.2em]"
                     >
                       {item.number}
                     </motion.span>
 
-                    {/* TITLE */}
                     <motion.h3
                       variants={{
-                        rest: {
-                          x: 0,
-                        },
+                        rest: { x: 0 },
                         hover: {
                           x: reduceMotion ? 0 : 14,
                         },
@@ -141,7 +141,6 @@ export default function Sortiment() {
                       {item.title}
                     </motion.h3>
 
-                    {/* DESCRIPTION */}
                     <motion.p
                       variants={{
                         rest: {
@@ -166,19 +165,15 @@ export default function Sortiment() {
               ))}
             </div>
 
-            <p className="mt-7 text-sm leading-5 text-white/30">
-              Unser vollständiges Sortiment entdecken Sie direkt vor Ort.
-              Wir beraten Sie gerne persönlich.
-            </p>
-            <a 
-            href="#standorte"
-              className="group mt-4 inline-flex items-center gap-4 text-[8px] uppercase tracking-[0.24em] text-white/55 transition-colors hover:text-white"
+            <a
+              href="#standorte"
+              className="group mt-6 inline-flex items-center gap-4 text-[8px] uppercase tracking-[0.24em] text-white/55 transition-colors hover:text-white md:mt-7"
             >
-                Standorte entdecken
-    
-                <span className="transition-transform duration-300 group-hover:translate-y-1">
-                    ↓
-                </span>
+              Standorte entdecken
+
+              <span className="transition-transform duration-300 group-hover:translate-y-1">
+                ↓
+              </span>
             </a>
           </div>
         </div>

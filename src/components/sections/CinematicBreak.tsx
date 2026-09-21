@@ -40,7 +40,7 @@ export default function CinematicBreak() {
       ref={sectionRef}
       className="bg-[var(--cream)] px-4 py-4 md:px-6 md:py-6"
     >
-      <div className="relative min-h-[70svh] overflow-hidden">
+      <div className="relative min-h-[420px] overflow-hidden md:min-h-[70svh]">
         <motion.img
           src="https://images.unsplash.com/photo-1768224949425-8c317d30e2d4?auto=format&fit=crop&w=2000&q=90"
           alt=""
@@ -61,16 +61,16 @@ export default function CinematicBreak() {
           }}
         />
 
-        <div className="relative z-10 flex min-h-[70svh] items-center justify-center px-6 py-24 text-center text-white">
+        <div className="relative z-10 flex min-h-[420px] items-center justify-center px-5 py-16 text-center text-white md:min-h-[70svh] md:px-6 md:py-24">
           <motion.div style={{ y: contentY }}>
-            <p className="eyebrow mb-7 text-white/45">
+            <p className="eyebrow mb-6 text-white/45 md:mb-7">
               Ausgewählt · gepflegt · beraten
             </p>
 
             <h2
               className="font-display font-medium leading-[0.9] tracking-[-0.045em]"
               style={{
-                fontSize: "clamp(4rem, 9vw, 9rem)",
+                fontSize: "clamp(3.4rem, 9vw, 9rem)",
               }}
             >
               Für Menschen,
@@ -80,7 +80,7 @@ export default function CinematicBreak() {
           </motion.div>
         </div>
 
-        <span className="absolute bottom-7 left-7 z-10 text-[8px] uppercase tracking-[0.28em] text-white/35 md:bottom-9 md:left-9">
+        <span className="absolute bottom-6 left-6 z-10 text-[7px] uppercase tracking-[0.24em] text-white/35 md:bottom-9 md:left-9 md:text-[8px] md:tracking-[0.28em]">
           Genusskultur · Minden
         </span>
       </div>

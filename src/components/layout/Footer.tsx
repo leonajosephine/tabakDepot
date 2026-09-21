@@ -1,5 +1,3 @@
-import TabakDepotMark from "@/components/ui/TabakDepotMark";
-
 import Image from "next/image";
 
 type FooterProps = {
@@ -17,14 +15,14 @@ export default function Footer({
           {/* BRAND */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-5">
-                <Image
+              <Image
                 src="/images/logo1.png"
                 alt="Tabak Depot Uphoff"
                 width={58}
                 height={58}
                 priority
                 className="h-[52px] w-[52px] object-contain"
-                />
+              />
 
               <div>
                 <p className="font-display text-xl font-medium tracking-[0.08em]">
@@ -38,8 +36,9 @@ export default function Footer({
             </div>
 
             <p className="mt-7 max-w-sm text-xs leading-5 text-white/30">
-              Zigarren, Whisky, Spirituosen und besondere Genussmomente –
-              persönlich in Minden und auf Ihrem Event.
+              Zigarren, Whisky, Spirituosen und besondere
+              Genussmomente – persönlich in Minden und auf
+              Ihrem Event.
             </p>
 
             <p className="mt-8 font-display text-xl italic text-white/25">
@@ -49,6 +48,7 @@ export default function Footer({
 
           {/* LINKS */}
           <div className="grid grid-cols-2 gap-10 lg:col-span-4 lg:col-start-7">
+            {/* EXPLORE */}
             <div>
               <p className="eyebrow mb-6 text-white/25">
                 Entdecken
@@ -92,6 +92,7 @@ export default function Footer({
               </div>
             </div>
 
+            {/* CONTACT */}
             <div>
               <p className="eyebrow mb-6 text-white/25">
                 Kontakt
@@ -106,17 +107,26 @@ export default function Footer({
                 </button>
 
                 <a
-                  href="#"
+                  href="tel:+4957122310"
                   className="transition-colors hover:text-white"
                 >
-                  Instagram
+                  0571 / 2 23 10
                 </a>
 
                 <a
-                  href="#"
-                  className="transition-colors hover:text-white"
+                  href="mailto:info@tabakdepot-uphoff.de"
+                  className="break-all transition-colors hover:text-white"
                 >
-                  Facebook
+                  info@tabakdepot-uphoff.de
+                </a>
+
+                <a
+                  href="#standorte"
+                  className="mt-2 leading-5 transition-colors hover:text-white"
+                >
+                  Markt 10
+                  <br />
+                  32423 Minden
                 </a>
               </div>
             </div>
@@ -157,9 +167,7 @@ export default function Footer({
             </a>
           </div>
 
-          <span>
-            Tabak & Alkohol ab 18 Jahren
-          </span>
+          <span>Tabak & Alkohol ab 18 Jahren</span>
         </div>
       </div>
     </footer>

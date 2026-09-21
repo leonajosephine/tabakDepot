@@ -16,22 +16,21 @@ const locations = [
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
     image:
       "https://images.unsplash.com/photo-1686205705363-a266f03b2d04?q=80&w=1860&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    featured: true,
   },
   {
     number: "02",
     name: "Depot Nord",
     address: "Wesertor 24\n32425 Minden",
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
-    image:
-      "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=900&q=85",
+    featured: false,
   },
   {
     number: "03",
     name: "Depot Süd",
     address: "Königstraße 41\n32427 Minden",
     hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
-    image:
-      "https://images.unsplash.com/photo-1781242934546-a7d82b595eeb?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    featured: false,
   },
 ];
 
@@ -56,15 +55,17 @@ export default function Locations() {
     reduceMotion ? [0, 0] : [45, 0]
   );
 
+  const featuredLocation = locations[0];
+  const secondaryLocations = locations.slice(1);
+
   return (
     <section
       ref={sectionRef}
       id="standorte"
-      className="overflow-hidden bg-[var(--cream)] py-24 text-[var(--ink)] md:py-36"
+      className="overflow-hidden bg-[var(--cream)] py-20 text-[var(--ink)] md:py-28"
     >
       <div className="container-main">
-        {/* INTRO */}
-        <div className="grid gap-12 lg:grid-cols-12">
+        <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow mb-6 text-[var(--muted-dark)]">
               Vor Ort
@@ -92,84 +93,76 @@ export default function Locations() {
 
           <div className="self-end lg:col-span-4 lg:col-start-9">
             <p className="max-w-sm text-sm leading-6 text-[var(--muted-dark)]">
-              Persönliche Beratung, unser vollständiges
-              Sortiment und Zeit für Ihre Fragen finden
-              Sie direkt in unseren drei Depots.
+              Drei Standorte in Minden. Für Zigarren, Whisky und
+              persönliche Fachberatung besuchen Sie unser Depot in
+              der Innenstadt.
             </p>
           </div>
         </div>
 
-        {/* LOCATIONS */}
         <motion.div
           style={{ y: locationsY }}
-          className="mt-20 grid border-y border-[var(--line-dark)] lg:grid-cols-3"
+          className="mt-16 border-y border-[var(--line-dark)]"
         >
-          {locations.map((location, index) => (
+          <div className="grid lg:grid-cols-[1.2fr_1fr]">
+            {/* FEATURED LOCATION */}
             <motion.article
-              key={location.number}
               initial="rest"
               whileHover="hover"
               animate="rest"
-              className={`group relative overflow-hidden py-10 lg:p-10 ${
-                index !== locations.length - 1
-                  ? "border-b border-[var(--line-dark)] lg:border-b-0 lg:border-r"
-                  : ""
-              }`}
+              className="group relative overflow-hidden border-b border-[var(--line-dark)] py-8 lg:border-b-0 lg:border-r lg:p-8 xl:p-10"
             >
-              {/* LARGE BACKGROUND NUMBER */}
               <motion.span
                 variants={{
-                  rest: {
-                    opacity: 0,
-                    x: 25,
-                  },
-                  hover: {
-                    opacity: 0.045,
-                    x: 0,
-                  },
+                  rest: { opacity: 0, x: 25 },
+                  hover: { opacity: 0.045, x: 0 },
                 }}
                 transition={{
                   duration: 0.5,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="pointer-events-none absolute -bottom-8 right-[-0.04em] font-display text-[11rem] font-semibold leading-none"
+                className="pointer-events-none absolute -bottom-10 right-[-0.04em] font-display text-[13rem] font-semibold leading-none"
               >
-                {location.number}
+                {featuredLocation.number}
               </motion.span>
 
-              {/* LOCATION LABEL */}
-              <span className="eyebrow relative z-10 text-[var(--muted-dark)]">
-                Standort {location.number}
-              </span>
+              <div className="relative z-10 flex flex-wrap items-center gap-4">
+                <span className="eyebrow text-[var(--muted-dark)]">
+                  Standort {featuredLocation.number}
+                </span>
 
-              {/* NAME */}
+                <span className="h-px w-7 bg-[var(--line-dark)]" />
+
+                <span className="text-[8px] uppercase tracking-[0.24em] text-[var(--muted-dark)]">
+                  Zigarren & Whisky
+                </span>
+              </div>
+
               <motion.h3
                 variants={{
-                  rest: {
-                    x: 0,
-                  },
-                  hover: {
-                    x: reduceMotion ? 0 : 8,
-                  },
+                  rest: { x: 0 },
+                  hover: { x: reduceMotion ? 0 : 8 },
                 }}
                 transition={{
                   duration: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="relative z-10 mt-8 font-display text-3xl font-medium leading-[0.95]"
+                className="relative z-10 mt-6 font-display text-4xl font-medium leading-[0.95] md:text-5xl"
               >
-                {location.name}
+                {featuredLocation.name}
               </motion.h3>
 
-              {/* LOCATION IMAGE */}
-              <div className="relative z-10 mt-6 aspect-[16/9] w-full overflow-hidden bg-[#ddd5ca]">
+              <p className="relative z-10 mt-3 max-w-md text-xs leading-5 text-[var(--muted-dark)]">
+                Unser Fachstandort für Zigarren, Whisky und
+                persönliche Beratung.
+              </p>
+
+              <div className="relative z-10 mt-6 h-[220px] w-full overflow-hidden bg-[#ddd5ca] md:h-[240px] lg:w-[85%] xl:h-[250px]">
                 <motion.img
-                  src={location.image}
+                  src={featuredLocation.image}
                   alt=""
                   variants={{
-                    rest: {
-                      scale: 1.03,
-                    },
+                    rest: { scale: 1.03 },
                     hover: {
                       scale: reduceMotion ? 1.03 : 1.075,
                     },
@@ -178,53 +171,43 @@ export default function Locations() {
                     duration: 0.7,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="h-full w-full object-cover grayscale-[20%]"
+                  className="h-full w-full object-cover grayscale-[10%]"
                 />
 
                 <motion.div
                   variants={{
-                    rest: {
-                      opacity: 0.08,
-                    },
-                    hover: {
-                      opacity: 0,
-                    },
+                    rest: { opacity: 0.05 },
+                    hover: { opacity: 0 },
                   }}
-                  transition={{
-                    duration: 0.5,
-                  }}
+                  transition={{ duration: 0.5 }}
                   className="pointer-events-none absolute inset-0 bg-black"
                 />
               </div>
 
-              {/* ADDRESS */}
-              <p className="relative z-10 mt-6 whitespace-pre-line text-sm leading-6 text-[var(--muted-dark)]">
-                {location.address}
-              </p>
+              {/* DETAILS — TWO COLUMNS ON MOBILE */}
+              <div className="relative z-10 mt-6 grid max-w-xl grid-cols-2 gap-5">
+                <div>
+                  <span className="text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]/60">
+                    Adresse
+                  </span>
 
-              <motion.div
-                variants={{
-                  rest: {
-                    scaleX: 1,
-                  },
-                  hover: {
-                    scaleX: reduceMotion ? 1 : 0.72,
-                  },
-                }}
-                transition={{
-                  duration: 0.45,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="relative z-10 my-7 h-px origin-left bg-[var(--line-dark)]"
-              />
+                  <p className="mt-2 whitespace-pre-line text-xs leading-5 text-[var(--muted-dark)] sm:text-sm sm:leading-6">
+                    {featuredLocation.address}
+                  </p>
+                </div>
 
-              {/* HOURS */}
-              <p className="relative z-10 whitespace-pre-line text-xs leading-6 text-[var(--muted-dark)]">
-                {location.hours}
-              </p>
+                <div>
+                  <span className="text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]/60">
+                    Öffnungszeiten
+                  </span>
 
-              {/* ROUTE */}
-              <button className="group/route relative z-10 mt-8 inline-flex items-center gap-4 text-[9px] uppercase tracking-[0.2em]">
+                  <p className="mt-2 whitespace-pre-line text-[11px] leading-5 text-[var(--muted-dark)] sm:text-xs sm:leading-6">
+                    {featuredLocation.hours}
+                  </p>
+                </div>
+              </div>
+
+              <button className="group/route relative z-10 mt-6 inline-flex items-center gap-4 text-[9px] uppercase tracking-[0.2em]">
                 <span className="underline decoration-black/30 underline-offset-[6px]">
                   Route anzeigen
                 </span>
@@ -234,15 +217,102 @@ export default function Locations() {
                 </span>
               </button>
             </motion.article>
-          ))}
+
+            {/* SECONDARY LOCATIONS */}
+            <div className="grid grid-rows-2">
+              {secondaryLocations.map((location, index) => (
+                <motion.article
+                  key={location.number}
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                  className={`group relative flex flex-col justify-between overflow-hidden px-0 py-8 lg:px-8 lg:py-8 xl:px-10 ${
+                    index !== secondaryLocations.length - 1
+                      ? "border-b border-[var(--line-dark)]"
+                      : ""
+                  }`}
+                >
+                  <motion.span
+                    variants={{
+                      rest: { opacity: 0, x: 20 },
+                      hover: { opacity: 0.04, x: 0 },
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="pointer-events-none absolute -bottom-8 right-0 font-display text-[9rem] font-semibold leading-none"
+                  >
+                    {location.number}
+                  </motion.span>
+
+                  <div className="relative z-10">
+                    <span className="eyebrow text-[var(--muted-dark)]">
+                      Standort {location.number}
+                    </span>
+
+                    <motion.h3
+                      variants={{
+                        rest: { x: 0 },
+                        hover: {
+                          x: reduceMotion ? 0 : 8,
+                        },
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="mt-5 font-display text-3xl font-medium leading-[0.95]"
+                    >
+                      {location.name}
+                    </motion.h3>
+                  </div>
+
+                  <div className="relative z-10 mt-7">
+                    {/* TWO COLUMNS ON MOBILE + DESKTOP XL */}
+                    <div className="grid grid-cols-2 gap-5 lg:grid-cols-1 xl:grid-cols-2">
+                      <div>
+                        <span className="text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]/60">
+                          Adresse
+                        </span>
+
+                        <p className="mt-2 whitespace-pre-line text-xs leading-5 text-[var(--muted-dark)] sm:text-sm sm:leading-6">
+                          {location.address}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className="text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]/60">
+                          Öffnungszeiten
+                        </span>
+
+                        <p className="mt-2 whitespace-pre-line text-[11px] leading-5 text-[var(--muted-dark)] sm:text-xs sm:leading-6">
+                          {location.hours}
+                        </p>
+                      </div>
+                    </div>
+
+                    <button className="group/route mt-6 inline-flex items-center gap-4 text-[9px] uppercase tracking-[0.2em]">
+                      <span className="underline decoration-black/30 underline-offset-[6px]">
+                        Route anzeigen
+                      </span>
+
+                      <span className="transition-transform duration-300 group-hover/route:translate-x-1">
+                        ↗
+                      </span>
+                    </button>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
-        {/* BOTTOM DETAIL */}
         <div className="mt-8 flex items-center gap-5">
           <span className="h-px flex-1 bg-[var(--line-dark)]" />
 
-          <span className="whitespace-nowrap text-[8px] uppercase tracking-[0.28em] text-[var(--muted-dark)]">
-            Persönlich vor Ort
+          <span className="max-w-[75%] text-right text-[7px] uppercase tracking-[0.2em] text-[var(--muted-dark)] sm:max-w-none sm:whitespace-nowrap sm:text-[8px] sm:tracking-[0.28em]">
+            Drei Standorte · Ein Fachstandort für Zigarren & Whisky
           </span>
         </div>
       </div>
