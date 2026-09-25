@@ -21,7 +21,7 @@ const whiskies = [
     note: "Rauch · Torf · Meeresbrise",
     description:
       "Intensiv, rauchig und unverwechselbar. Ein Islay-Klassiker für alle, die Charakter im Glas suchen.",
-    image: "/images/whisky/whisky1.png",
+    image: "/images/whisky/aberfeldy.png",
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const whiskies = [
     note: "Vanille · Karamell · Eiche",
     description:
       "Weich und warm mit klassischer Bourbon-Süße – ein unkomplizierter Begleiter zu kräftigen Zigarren.",
-    image: "/images/whisky/whisky2.png",
+    image: "/images/whisky/balvenie2.png",
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const whiskies = [
     note: "Frucht · Honig · Eiche",
     description:
       "Elegant und ausgewogen mit reifen Früchten, Honig und einer feinen Holznote.",
-    image: "/images/whisky/whisky3.png",
+    image: "/images/whisky/bowmore.png",
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ const whiskies = [
     note: "Vanille · Kakao · Kokos",
     description:
       "Weich, komplex und aromatisch – ein Rum, der hervorragend mit einer milden bis mittelkräftigen Zigarre harmoniert.",
-    image: "/images/whisky/whisky6.png",
+    image: "/images/whisky/glenmorangie.png",
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const whiskies = [
     note: "Schokolade · Orange · Gewürz",
     description:
       "Samtig und vollmundig mit dunkler Süße und würzigen Akzenten.",
-    image: "/images/whisky/whisky5.png",
+    image: "/images/whisky/ledaig.png",
   },
 ];
 
