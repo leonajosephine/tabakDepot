@@ -16,9 +16,13 @@ const whiskies = [
   {
     id: 1,
     name: "Aberfeldy 21",
-    category: "Single Malt Scotch",
-    origin: "Highlands · Scotland",
-    note: "Heidehonig · Toffee · Orange",
+    category: "Highland Single Malt",
+    origin: "Highlands · Honig & Eleganz",
+    age: "21 Jahre",
+    abv: "40 % vol",
+    type: "Single Malt Scotch",
+    headline: "Sanft, cremig und gelassen.",
+    notes: ["Heidehonig", "Toffee", "Orange"],
     description:
       "Honig und cremiges Toffee geben den Ton an. Orange, geröstete Nüsse und eine feine Würze sorgen für Tiefe, ohne den weichen Charakter zu überdecken.",
     image: "/images/whisky/aberfeldy.png",
@@ -27,8 +31,12 @@ const whiskies = [
     id: 2,
     name: "Glenmorangie 16",
     category: "The Nectar",
-    origin: "Highlands · Scotland",
-    note: "Aprikose · Vanillecreme · Brioche",
+    origin: "Highlands · Frucht & Pâtisserie",
+    age: "16 Jahre",
+    abv: "46 % vol",
+    type: "Single Malt Scotch",
+    headline: "Eine duftende, fruchtige Dessertwelt.",
+    notes: ["Aprikose", "Vanillecreme", "Brioche"],
     description:
       "Gebackene Aprikose, Vanillecreme und Brioche verbinden sich mit Mandel und Honig. Zitruszeste setzt einen frischen Akzent zur üppigen Süße.",
     image: "/images/whisky/glenmorangie.png",
@@ -37,8 +45,12 @@ const whiskies = [
     id: 3,
     name: "The Balvenie 18",
     category: "Pedro Ximénez Cask",
-    origin: "Speyside · Scotland",
-    note: "Getrocknete Feige · Mandarine · Honig",
+    origin: "Speyside · Sherry & Fülle",
+    age: "18 Jahre",
+    abv: "48,7 % vol",
+    type: "Single Malt Scotch",
+    headline: "Satte Frucht mit honigweichem Kern.",
+    notes: ["Getrocknete Feige", "Mandarine", "Honig"],
     description:
       "Getrocknete Feigen und Mandarine treffen auf den typischen Honigcharakter der Brennerei. Ein floraler Hauch von Lavendel ergänzt das volle, süße Profil.",
     image: "/images/whisky/balvenie.png",
@@ -46,19 +58,27 @@ const whiskies = [
   {
     id: 4,
     name: "Bowmore 18",
-    category: "Single Malt Scotch",
-    origin: "Islay · Scotland",
-    note: "Dunkle Schokolade · Trockenfrucht · Torfrauch",
+    category: "Klassische Abfüllung",
+    origin: "Islay · Schokolade & Rauch",
+    age: "18 Jahre",
+    abv: "43 % vol",
+    type: "Single Malt Scotch",
+    headline: "Rauch mit einer samtigen Seite.",
+    notes: ["Dunkle Schokolade", "Trockenfrucht", "Torfrauch"],
     description:
       "Dunkle Schokolade, Trockenfrucht und Toffee treffen auf Orangenschale und eingebundenen Torfrauch. Eine maritime Note bringt zusätzliche Spannung.",
-    image: "/images/whisky/bowmore.png",
+    image: "/images/whisky/bowmore1.png",
   },
   {
     id: 5,
     name: "Ledaig 18",
-    category: "Single Malt Scotch",
-    origin: "Isle of Mull · Scotland",
-    note: "Torfrauch · Meersalz · Pfeffer",
+    category: "Tobermory Distillery",
+    origin: "Isle of Mull · Torf & Meeresluft",
+    age: "18 Jahre",
+    abv: "46,3 % vol",
+    type: "Single Malt Scotch",
+    headline: "Markant, maritim und kompromisslos.",
+    notes: ["Kräftiger Torfrauch", "Meersalz", "Pfeffer"],
     description:
       "Intensiver Torfrauch, Seetang und Pfeffer prägen den Auftakt. Dahinter liegen Orangenschale, Kaffee, Tabak und die fruchtige Wärme der Sherryfässer.",
     image: "/images/whisky/ledaig.png",
@@ -162,7 +182,6 @@ export default function WhiskyShowcase({
             <h2 className="font-display text-5xl font-medium leading-none tracking-[-0.04em] md:text-7xl">
               Der passende
               <br />
-
               <span className="italic text-[var(--muted-dark)]">
                 Begleiter.
               </span>
@@ -171,9 +190,8 @@ export default function WhiskyShowcase({
 
           <p className="max-w-lg self-end text-sm leading-6 text-[var(--muted-dark)] lg:col-span-4 lg:col-start-9">
             Eine kleine Auswahl aus unserem Sortiment.
-            Persönliche Empfehlungen und weitere
-            Spirituosen finden Sie direkt in unseren
-            Depots.
+            Persönliche Empfehlungen und weitere Spirituosen
+            finden Sie direkt in unseren Depots.
           </p>
         </div>
       </div>
@@ -184,7 +202,7 @@ export default function WhiskyShowcase({
 
       <div className="relative lg:hidden">
         {/* PRODUCT STAGE */}
-        <div className="relative h-[520px] overflow-hidden">
+        <div className="relative h-[450px] overflow-hidden sm:h-[500px]">
           {/* GHOST TYPOGRAPHY */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
             <AnimatePresence mode="wait">
@@ -206,20 +224,29 @@ export default function WhiskyShowcase({
                   duration: 0.5,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-display whitespace-nowrap text-[8.5rem] font-medium leading-none text-black/[0.04]"
+                className="font-display whitespace-nowrap text-[7rem] font-medium leading-none text-black/[0.04] sm:text-[8.5rem]"
               >
                 {whisky.category}
               </motion.p>
             </AnimatePresence>
           </div>
 
-          {/* NUMBER */}
-          <div className="container-main absolute left-0 right-0 top-7 z-10 flex items-center justify-between">
-            <span className="eyebrow text-[var(--muted-dark)]">
-              Selected bottle
-            </span>
+          {/* HEADLINE + NUMBER */}
+          <div className="container-main absolute left-0 right-0 top-7 z-10 flex items-start justify-between gap-6">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={whisky.id}
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="max-w-[210px] font-display text-[1.1rem] font-medium leading-[1.15]"
+              >
+                {whisky.headline}
+              </motion.p>
+            </AnimatePresence>
 
-            <span className="font-display text-lg italic text-[var(--muted-dark)]">
+            <span className="shrink-0 font-display text-lg italic text-[var(--muted-dark)]">
               {String(active + 1).padStart(2, "0")} /{" "}
               {String(whiskies.length).padStart(2, "0")}
             </span>
@@ -259,7 +286,7 @@ export default function WhiskyShowcase({
                   src={whisky.image}
                   alt={whisky.name}
                   draggable={false}
-                  className="h-[390px] w-[250px] select-none object-contain drop-shadow-[0_28px_24px_rgba(0,0,0,0.18)] sm:h-[430px] sm:w-[280px]"
+                  className="h-[340px] w-[220px] select-none object-contain drop-shadow-[0_28px_24px_rgba(0,0,0,0.18)] sm:h-[410px] sm:w-[270px]"
                 />
               </motion.div>
             </AnimatePresence>
@@ -272,7 +299,7 @@ export default function WhiskyShowcase({
 
         {/* MOBILE CONTROLS */}
         <div className="container-main">
-          <div className="flex items-center justify-between border-y border-[var(--line-dark)] py-5">
+          <div className="flex items-center justify-between border-y border-[var(--line-dark)] py-4">
             <button
               onClick={previous}
               className="flex items-center gap-3 text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]"
@@ -325,27 +352,54 @@ export default function WhiskyShowcase({
                 duration: 0.4,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="py-9"
+              className="py-7"
             >
               <p className="text-[8px] uppercase tracking-[0.22em] text-[var(--muted-dark)]">
                 {whisky.origin}
               </p>
 
-              <h3 className="mt-3 font-display text-[2.7rem] font-medium leading-none tracking-[-0.035em]">
+              <h3 className="mt-3 font-display text-[2.5rem] font-medium leading-none tracking-[-0.035em]">
                 {whisky.name}
               </h3>
 
-              <p className="mt-5 font-display text-xl italic text-[var(--muted-dark)]">
-                {whisky.note}
+              <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-[var(--muted-dark)]">
+                {whisky.category}
               </p>
 
+              {/* SPECS */}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {[whisky.age, whisky.abv, whisky.type].map(
+                  (spec) => (
+                    <span
+                      key={spec}
+                      className="border border-[var(--line-dark)] px-2.5 py-1.5 text-[8px] uppercase tracking-[0.13em] text-[var(--muted-dark)]"
+                    >
+                      {spec}
+                    </span>
+                  )
+                )}
+              </div>
+
+              {/* DESCRIPTION */}
               <p className="mt-5 max-w-md text-[13px] leading-[1.7] text-[var(--muted-dark)]">
                 {whisky.description}
               </p>
 
+              {/* TASTING NOTES */}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {whisky.notes.map((note) => (
+                  <span
+                    key={note}
+                    className="rounded-full bg-black/[0.045] px-3 py-1.5 text-[9px] text-[var(--muted-dark)]"
+                  >
+                    {note}
+                  </span>
+                ))}
+              </div>
+
               <button
                 onClick={onInquiry}
-                className="mt-7 text-[8px] uppercase tracking-[0.21em] underline decoration-black/30 underline-offset-[6px]"
+                className="mt-6 text-[8px] uppercase tracking-[0.21em] underline decoration-black/30 underline-offset-[6px]"
               >
                 Pairing anfragen
               </button>
@@ -358,7 +412,7 @@ export default function WhiskyShowcase({
       {/* DESKTOP SHOWCASE                  */}
       {/* ================================= */}
 
-      <div className="relative hidden min-h-[760px] lg:block">
+      <div className="relative hidden min-h-[720px] lg:block">
         {/* BACKGROUND TYPOGRAPHY */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center overflow-hidden">
           <AnimatePresence mode="wait">
@@ -391,9 +445,9 @@ export default function WhiskyShowcase({
           </AnimatePresence>
         </div>
 
-        <div className="container-main relative z-10 grid min-h-[760px] items-center py-16 lg:grid-cols-12">
+        <div className="container-main relative z-10 grid min-h-[720px] items-center py-12 lg:grid-cols-12">
           {/* PREVIOUS BOTTLE */}
-          <div className="relative hidden h-[540px] lg:col-span-2 lg:block">
+          <div className="relative hidden h-[570px] lg:col-span-2 lg:block">
             <motion.button
               onClick={previous}
               aria-label="Vorherige Flasche"
@@ -437,34 +491,61 @@ export default function WhiskyShowcase({
                   duration: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="relative max-w-[340px] lg:ml-auto lg:mr-[-12px]"
+                className="relative max-w-[390px] lg:ml-auto lg:mr-[-12px]"
               >
-                <p className="eyebrow mb-8 text-[var(--muted-dark)]">
-                  Selected bottle ·{" "}
-                  {String(active + 1).padStart(2, "0")}
+                {/* HEADLINE INSTEAD OF SELECTED BOTTLE */}
+                <p className="mb-5 font-display text-[1.2rem] font-medium leading-[1.15]">
+                  {whisky.headline}
                 </p>
 
-                <h3 className="font-display text-4xl font-medium tracking-[-0.03em]">
-                  {whisky.name}
-                </h3>
-
-                <p className="mt-2 text-[9px] uppercase tracking-[0.22em] text-[var(--muted-dark)]">
+                <p className="mb-2 text-[9px] uppercase tracking-[0.22em] text-[var(--muted-dark)]">
                   {whisky.origin}
                 </p>
 
-                <div className="my-7 h-px w-full bg-[var(--line-dark)]" />
+                <h3 className="font-display text-[2.7rem] font-medium leading-none tracking-[-0.035em]">
+                  {whisky.name}
+                </h3>
 
-                <p className="font-display text-xl italic text-[var(--muted-dark)]">
-                  {whisky.note}
+                <p className="mt-2 text-[9px] uppercase tracking-[0.2em] text-[var(--muted-dark)]">
+                  {whisky.category}
                 </p>
 
-                <p className="mt-5 text-sm leading-6 text-[var(--muted-dark)]">
+                {/* SPECS */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {[whisky.age, whisky.abv, whisky.type].map(
+                    (spec) => (
+                      <span
+                        key={spec}
+                        className="border border-[var(--line-dark)] px-2.5 py-1.5 text-[8px] uppercase tracking-[0.12em] text-[var(--muted-dark)]"
+                      >
+                        {spec}
+                      </span>
+                    )
+                  )}
+                </div>
+
+                <div className="my-5 h-px w-full bg-[var(--line-dark)]" />
+
+                {/* DESCRIPTION */}
+                <p className="text-[12px] leading-[1.65] text-[var(--muted-dark)]">
                   {whisky.description}
                 </p>
 
+                {/* TASTING NOTES */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {whisky.notes.map((note) => (
+                    <span
+                      key={note}
+                      className="rounded-full bg-black/[0.045] px-3 py-1.5 text-[9px] text-[var(--muted-dark)]"
+                    >
+                      {note}
+                    </span>
+                  ))}
+                </div>
+
                 <button
                   onClick={onInquiry}
-                  className="mt-8 text-[9px] uppercase tracking-[0.22em] underline decoration-black/30 underline-offset-[7px] transition-opacity hover:opacity-50"
+                  className="mt-6 text-[8px] uppercase tracking-[0.2em] underline decoration-black/30 underline-offset-[6px] transition-opacity hover:opacity-50"
                 >
                   Pairing anfragen
                 </button>
@@ -473,7 +554,7 @@ export default function WhiskyShowcase({
           </div>
 
           {/* ACTIVE + NEXT BOTTLE */}
-          <div className="relative h-[540px] overflow-visible lg:col-span-4">
+          <div className="relative h-[570px] overflow-visible lg:col-span-4">
             {/* ACTIVE BOTTLE */}
             <div className="absolute inset-0 z-10 flex items-center justify-start">
               <AnimatePresence
@@ -546,7 +627,6 @@ export default function WhiskyShowcase({
               <span className="transition-transform duration-300 group-hover:-translate-x-1">
                 ←
               </span>
-
               Prev
             </button>
 
@@ -580,8 +660,8 @@ export default function WhiskyShowcase({
       </div>
 
       {/* MORE IN STORE */}
-      <div className="container-main pb-16 md:pb-20">
-        <div className="flex flex-col gap-6 border-t border-[var(--line-dark)] pt-7 md:flex-row md:items-center md:justify-between">
+      <div className="container-main pb-12 md:pb-20">
+        <div className="flex flex-col gap-5 border-t border-[var(--line-dark)] pt-7 md:flex-row md:items-center md:justify-between md:gap-6">
           <div className="flex items-start gap-5">
             <span className="mt-[7px] h-px w-8 shrink-0 bg-[var(--ink)]" />
 
