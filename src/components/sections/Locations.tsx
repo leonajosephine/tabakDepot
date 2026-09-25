@@ -12,8 +12,8 @@ const locations = [
   {
     number: "01",
     name: "Depot Innenstadt",
-    address: "Marktstraße 12\n32423 Minden",
-    hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+    address: "Markt 10\n32423 Minden",
+    hours: "Mo & Fr · 08:00 – 19:00\nDi - Do · 08:00 - 18:00\nSa · 10:00 – 18:00",
     image:
       "https://images.unsplash.com/photo-1686205705363-a266f03b2d04?q=80&w=1860&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     featured: true,
@@ -21,15 +21,15 @@ const locations = [
   {
     number: "02",
     name: "Depot Nord",
-    address: "Wesertor 24\n32425 Minden",
-    hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+    address: "Scharn 11-17\n32423 Minden",
+    hours: "Mo – Sa · 09:30 – 19:00",
     featured: false,
   },
   {
     number: "03",
     name: "Depot Süd",
-    address: "Königstraße 41\n32427 Minden",
-    hours: "Mo – Fr · 08:00 – 19:00\nSa · 09:00 – 18:00",
+    address: "Flurweg 11\n32457 Porta Westfalica",
+    hours: "Mo – Sa · 08:30 – 19:00",
     featured: false,
   },
 ];
