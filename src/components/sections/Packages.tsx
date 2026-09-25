@@ -26,7 +26,7 @@ const packages = [
       "Hochwertig vorbereitet",
       "Versand oder Abholung",
     ],
-    price: "ab 89 €",
+    price: "ab 159 €",
     image:
       "https://images.unsplash.com/photo-1749842839766-8b71630a627d?auto=format&fit=crop&w=1200&q=85",
   },
@@ -43,7 +43,7 @@ const packages = [
       "Aufbau vor Ort",
       "Abbau nach dem Event",
     ],
-    price: "ab 249 €",
+    price: "auf Anfrage",
     image:
       "https://images.unsplash.com/photo-1679419858680-5bcb97e7175f?auto=format&fit=crop&w=1200&q=85",
   },
