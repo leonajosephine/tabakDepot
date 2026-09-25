@@ -42,8 +42,6 @@ export default function ImpressumPage() {
               </h2>
 
               <p className="mt-5 text-sm leading-7 text-[var(--muted-dark)]">
-                Tabak-Depot Minden
-                <br />
                 Torsten Uphoff
                 <br />
                 Markt 10
@@ -58,7 +56,7 @@ export default function ImpressumPage() {
               </h2>
 
               <p className="mt-5 text-sm leading-7 text-[var(--muted-dark)]">
-                Telefon: 0571 / 2 23 10
+                Telefon: 0571 / 223 10 
                 <br />
                 E-Mail:{" "}
                 <a
@@ -70,7 +68,7 @@ export default function ImpressumPage() {
               </p>
             </section>
 
-            {/* TODO: VOR LIVEGANG PRÜFEN */}
+            {/* TODO: VOR LIVEGANG PRÜFEN
             <section>
               <h2 className="font-display text-3xl font-medium">
                 Registereintrag
@@ -81,7 +79,7 @@ export default function ImpressumPage() {
                 <br />
                 Registernummer: [REGISTERNUMMER]
               </p>
-            </section>
+            </section> */}
 
             {/* TODO: VOR LIVEGANG PRÜFEN */}
             <section>
@@ -93,7 +91,7 @@ export default function ImpressumPage() {
                 Umsatzsteuer-Identifikationsnummer gemäß § 27a
                 Umsatzsteuergesetz:
                 <br />
-                [UST-IDNR. / FALLS VORHANDEN]
+                USt-ID: DE 161 587 500
               </p>
             </section>
 

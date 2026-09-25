@@ -70,8 +70,6 @@ export default function DatenschutzPage() {
               </p>
 
               <p className="mt-4 text-sm leading-7 text-[var(--muted-dark)]">
-                Tabak-Depot Minden
-                <br />
                 Torsten Uphoff
                 <br />
                 Markt 10
@@ -79,7 +77,7 @@ export default function DatenschutzPage() {
                 32423 Minden
                 <br />
                 <br />
-                Telefon: 0571 / 2 23 10
+                Telefon: 0571 / 223 10
                 <br />
                 E-Mail:{" "}
                 <a
